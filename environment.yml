@@ -1,0 +1,23 @@
+# Everything the gate needs, and nothing else. Deliberately torch-free: the only
+# PyTorch dependency was a ResNet18 baseline that is not part of the shipped model,
+# so both training and inference run on scikit-learn alone.
+#
+#   conda env create -f environment.yml
+#   conda activate nisar-gate
+#
+# Named nisar-gate rather than biomass so it can coexist with the research env.
+name: nisar-gate
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - numpy
+  - scipy
+  - rasterio            # granule I/O, windowed reads, WarpedVRT for context rasters
+  - scikit-image        # GLCM, structure tensor, NL-means despeckle, registration
+  - scikit-learn        # the random forest and the CV splitters
+  - joblib              # model bundle serialisation + tile-level parallelism
+  - opencv              # resize in read_amp
+  - matplotlib          # map rendering
+  - pandas              # src/plot_granule_layers.py only -- not on the inference path
+  - tqdm
