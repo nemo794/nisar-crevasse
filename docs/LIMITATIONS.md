@@ -5,8 +5,8 @@ something that was measured, not something feared.
 
 ## 1. The headline numbers describe one place
 
-Spatial-block OOF 0.932 is honest for the ground it was measured on. That ground is a
-single NISAR frame.
+Spatial-block OOF 0.932 is honest for the ground it was measured on — but read item 8 for
+what the blocking does and does not control. That ground is a single NISAR frame.
 
 `025_019` and `025_091` are **both ascending track 140, frame 4005**, five days apart, with
 82% bounding-box overlap. So the two leave-one-granule-out numbers (0.921, 0.943) look like
@@ -114,23 +114,45 @@ which are real linear features; arguably a labelling-definition question. **Unre
 hide the effect rather than explain it. Every keep rate in RESULTS.md was measured without
 it and is therefore an **upper bound**.
 
-## 8. Context is a confound, not a feature
+## 8. The shipped bundle's CV blocking is too narrow to be a performance claim
+
+The bundle records spatial-block OOF 0.932 at `--block-tiles 8` (~20 km blocks). A model
+given **only the raw tile indices** — no pixels — scores **0.934** on those same folds. The
+crevasse field is much larger than 20 km, so a held-out block's label is still predictable
+from where it is.
+
+This is not a claim that the gate memorises position; the forest never sees `row`/`col`, and
+the matched-ground A/B (item 2) varies the pixels with position held fixed and moves AUC by
+0.277. It means **0.932 does not by itself demonstrate skill**, and should be quoted as the
+reproducibility target for `scripts/run_training.sh` rather than as performance.
+
+Widening the block fixes it, and the fix is stable: margin over position is +0.051 at 16×16
+tiles (41 km), +0.044 at 32×32, +0.046 at 64×64. Quote **0.942 at `--block-tiles 16`**
+against a position floor of 0.891. Full sweep in RESULTS.md.
+
+The shipped bundle was not retrained at 16, because 0.932/8 is the value already recorded in
+it, in `run_training.sh` and in every verification control — changing the default would have
+made the reproduction checks disagree with the artifact. That is a real loose end: the
+default in `train_gate_classifier.py:525` is still 8.
+
+## 9. Context is a confound, not a feature
 
 Ice type and surface velocity raise AUC and are still not used, because the `(row, col)`
 control settles it: raw tile indices scored +0.031 against the context prior's +0.027. The
 prior was memorising where crevasses are in this scene.
 
-**Run the `(row, col)` control on any new label set.** It has caught a real confound in this
-project and it is cheap.
+**Run the `(row, col)` control on any new label set**, and sweep the block width while you do
+— item 8 is what happens when you don't. It has caught a real confound in this project, it
+caught a bad CV setting too, and it is cheap. Recipe in CONTRIBUTING.md.
 
-## 9. Known-invalid numbers not in this repo
+## 10. Known-invalid numbers not in this repo
 
 An earlier recall-by-log-dynamic-range analysis (recall 99.6% → 75.2% across contrast
 thirds) was invalidated: ~82% of the apparent misses were AlphaEarth mislabels, and
 correcting them took recall to 94.4%. The contrast threshold it suggested was **not**
 shipped and the figures are not here. Mentioned so the finding is not rediscovered as new.
 
-## 10. What is not shipped at all
+## 11. What is not shipped at all
 
 The downstream Frangi ridge stage and U-Net segmentation. The ridge stage's parameters are
 still sensitive to tile size and percentile; the U-Net has had no real training run.

@@ -71,8 +71,11 @@ Two numbers are always printed, and they mean different things:
 
 - **Random-fold OOF** — optimistic. Ice texture is spatially smooth, so a randomly held-out
   tile usually has a training neighbour a few hundred metres away.
-- **Spatial-block OOF** — whole 8 × 8 tile (~20 km) blocks held out. This is the number to
-  quote.
+- **Spatial-block OOF** — whole `--block-tiles` × `--block-tiles` blocks held out. The
+  default is 8 tiles (~20 km), which is what the shipped bundle records — but **20 km is too
+  narrow to be a performance claim**: a model given only the raw tile indices ties it. Quote
+  the 16-tile (~41 km) number instead, where the margin over position is +0.051 and stable.
+  LIMITATIONS.md §8 has the sweep.
 - **Leave-one-granule-out** — per-granule, also printed. Read the caveat in
   LIMITATIONS.md before believing it: the two training granules are the same frame five
   days apart, so LOGO here is closer to a repeat-pass consistency check than a transfer

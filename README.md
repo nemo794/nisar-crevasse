@@ -48,7 +48,13 @@ scripts/run_training.sh
 ```
 
 Reproduces the shipped bundle from the shipped label CSVs. Requires the granules.
-Expected: 3692 tiles, spatial-block OOF 0.932, threshold 0.333.
+Expected: 3692 tiles, spatial-block OOF 0.932, threshold 0.333 — verified bit-identical.
+
+Treat 0.932 as a **reproducibility target, not a performance claim**: at the default 8-tile
+blocking a model given only the raw tile indices scores 0.934. Add `--block-tiles 16` for a
+number that means something (0.942, against a 0.891 position floor). LIMITATIONS.md §8.
+
+If you plan to modify anything, start with [docs/CONTRIBUTING.md](docs/CONTRIBUTING.md).
 
 ## Before you use a new granule
 
@@ -76,6 +82,11 @@ effort rather than after.
 | `src/build_aoi_tile_labels.py` | build tile labels from an AlphaEarth-derived mosaic |
 | `src/build_context_masks.py`, `src/build_context_grid.py` | ice-type and velocity context, used for **label construction and masking only** — never as model features (see docs/METHOD.md for why) |
 | `src/plot_*.py` | diagnostic figures |
+| `docs/METHOD.md` | tiling, features, classifier, CV, threshold |
+| `docs/RESULTS.md` | the numbers, each with its control |
+| `docs/LIMITATIONS.md` | what these numbers do not show. Read before quoting any of them. |
+| `docs/DATA.md` | what to download and where to put it |
+| `docs/CONTRIBUTING.md` | **how to add to this repo** — layout, recipes, the controls to re-run |
 | `docs/lessons/` | what was tried and refuted along the way. More useful than the code if you are porting this. |
 
 ## Scope

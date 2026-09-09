@@ -19,22 +19,60 @@ what it measured; what it measured is narrower than it looks.
 
 ## Separation
 
-| measure | AUC | what it means |
-|---|---|---|
-| random-fold OOF | 0.951 | optimistic — neighbouring tiles leak across folds |
-| **spatial-block OOF** | **0.932** | 8×8 tile (~20 km) blocks held out, 124 blocks. **Quote this one.** |
-| LOGO 025_019 | 0.921 | train on 025_091, test on 025_019 |
-| LOGO 025_091 | 0.943 | train on 025_019, test on 025_091 |
+**Read the `(row, col)` column before the AUC column.** It is a model given nothing but the
+tile's raw indices — no pixels, no physics. Where it matches the SAR model, the protocol is
+not measuring skill.
 
-The two LOGO numbers look like a transfer result and are not — see LIMITATIONS.md. The gap
-between random-fold and spatial-block (0.951 → 0.932) is the honest cost of spatial
-autocorrelation, and it is small, which is the good news in this table.
+| measure | SAR 270 | `(row, col)` only | margin | what it means |
+|---|---|---|---|---|
+| random-fold OOF | 0.951 | 0.981 | −0.030 | optimistic both ways — neighbouring tiles leak across folds |
+| spatial-block, 8×8 tiles (~20 km) | **0.932** | **0.934** | **+0.000** | the shipped bundle's number. **Blocks too small — position ties it.** |
+| spatial-block, 16×16 tiles (~41 km) | **0.942** | 0.891 | **+0.051** | **quote this one** |
+| LOGO 025_019 | 0.921 | 0.876 | +0.045 | |
+| LOGO 025_091 | 0.943 | 0.865 | +0.078 | |
+| **matched-ground A/B** | **0.904 vs 0.627** | n/a — position held fixed | | the load-bearing measurement; see below |
+
+**The `(row, col)` column is the point of this table.** It is a model given nothing but the
+tile's raw indices — no pixels, no physics. Where it matches the SAR model, the protocol is
+not measuring skill.
+
+At the shipped 8×8 blocking it matches exactly, and the reason is that the block is smaller
+than the thing being predicted: the crevasse field is far larger than 20 km, so a held-out
+block's label is still predictable from where it is. This is a property of the labels, not of
+the forest, which never sees `row`/`col`.
+
+Widening the block fixes it. Measured 2026-09-08:
+
+| block | ground | blocks | SAR | `(row, col)` | margin |
+|---|---|---|---|---|---|
+| 8 | 20.5 km | 124 | 0.935 | 0.934 | +0.000 |
+| **16** | **41.0 km** | **42** | **0.942** | **0.891** | **+0.051** |
+| 32 | 81.9 km | 17 | 0.922 | 0.878 | +0.044 |
+| 64 | 163.8 km | 7 | 0.908 | 0.862 | +0.046 |
+
+The margin opens at 41 km and is then **stable at +0.044 to +0.051 across a four-fold change
+in block size**, which is the reassuring part — it is not a number that keeps sliding as the
+control gets stricter. Use `--block-tiles 16`. (At 64 there are only 7 groups for 5 folds, so
+read that row as a consistency check, not a measurement.)
+
+The evidence that the gate reads pixels at all is the **matched-ground A/B**: position,
+labels, folds and code all held fixed, only the source pixels vary, and AUC moves 0.904 →
+0.627. Position cannot explain that, because position did not change.
+
+So: **0.932 is a reproducibility target, not a performance claim** — it is what the shipped
+bundle recorded and what `scripts/run_training.sh` must reproduce. The performance claim is
+0.942 at 41 km blocking, against a position floor of 0.891.
+
+The two LOGO numbers look like a transfer result and are not — see LIMITATIONS.md.
 
 ### Controls that were run
 
-- **`(row, col)` control.** Raw tile indices as the only features scored near chance on this
-  label set. Geography alone does not separate these classes, so the AUC above is not
-  memorised location. This control has caught a real confound before and is not decoration.
+- **`(row, col)` control — convicts the 8×8 blocking, clears the gate at 16×16.** Measured
+  2026-09-08 on the shipped label set (1846 native tiles, 889 positive); see the sweep above.
+  Cross-granule leakage is *not* the mechanism: pooling blocks across granules so shared
+  ground is held out together *raises* position to 0.972, and it is block width that matters.
+  Reproduce with the recipe in [CONTRIBUTING.md](CONTRIBUTING.md). This control killed the
+  context prior once already; here it convicts a CV setting rather than a feature.
 - **Speed-matched negatives.** Velocity alone scored 0.866 on an earlier label set built with
   a spatial buffer. The shipped CSVs are speed-matched, which removes that.
 - **Square-pixel and duplicate-granule-ID guards** were in place for this training run and
