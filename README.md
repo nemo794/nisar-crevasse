@@ -98,3 +98,34 @@ downstream stages are not settled enough to hand over.
 The longer-term goal is porting this framework to ESA BIOMASS. NISAR is the pathfinder —
 which is why `src/check_granule.py` and the controls baked into every script matter more
 here than the specific AUC on a Thwaites frame.
+
+## Export Classification
+
+This software may be subject to U.S. export control laws. By accepting
+this software, the user agrees to comply with all applicable U.S. export
+laws and regulations. User has the responsibility to obtain export licenses,
+or other export authority as may be required before exporting such
+information to foreign countries or providing access to foreign persons.
+
+## License
+
+This software was developed at the Jet Propulsion Laboratory, California Institute of Technology.
+
+This software is licensed under your choice of BSD-3-Clause or Apache-2.0
+licenses. The exact terms of each license can be found in the accompanying
+[LICENSE-BSD-3-Clause.txt] and [LICENSE-Apache-2.0.txt] files, respectively.
+
+[LICENSE-BSD-3-Clause.txt]: LICENSE-BSD-3-Clause.txt
+[LICENSE-Apache-2.0.txt]: LICENSE-Apache-2.0.txt
+
+SPDX-License-Identifier: BSD-3-Clause OR Apache-2.0
+
+## Disclaimer
+
+This software is provided "as is" without warranty of any kind, express or
+implied, including but not limited to the warranties of merchantability,
+fitness for a particular purpose and noninfringement. In no event shall the
+authors or copyright holders be liable for any claim, damages or other
+liability, whether in an action of contract, tort or otherwise, arising from,
+out of or in connection with the software or the use or other dealings in
+the software.
