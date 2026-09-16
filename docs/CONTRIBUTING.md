@@ -33,13 +33,14 @@ Break these and the repo stops meaning what its docs say.
 | a shared constant, or a feature used by more than one script | `src/gate_common.py` | it is the shared-constants-and-features module; it must stay import-light |
 | a new granule check | a subcommand in `src/check_granule.py` | do not make a new top-level script |
 | anything reading/writing tiles | reuse `read_amp` / `tile_scale` from `train_gate_classifier.py` | do not re-derive the scale from `transform.a` yourself |
+| a library entry point for a caller holding arrays | `src/gate_predict.py` | it reuses `featurize` verbatim and takes column order from the bundle's `hand_keys`, never from a literal. A guard the CLI gets from the raster must be moved here explicitly — that is what `px_m` is for |
 | a figure | `src/plot_<thing>.py` | one figure per script, `--out` argument |
 | a one-command workflow | `scripts/*.sh` | thin wrapper only — no logic that isn't in `src/` |
 | a number | `docs/RESULTS.md`, with its control | |
 | a reason a number is narrower than it looks | `docs/LIMITATIONS.md` | |
 | a thing you tried that did not work | `docs/lessons/` | see below — these are the most valuable files here |
 
-`src/` is deliberately flat. There are 14 modules; a package hierarchy would buy nothing and
+`src/` is deliberately flat. There are 15 modules; a package hierarchy would buy nothing and
 would break the `sys.path.insert(0, 'src')` idiom the scripts use.
 
 **Never hardcode an absolute path.** Everything resolves off `gate_common.ROOT`, which is
@@ -216,9 +217,19 @@ tree on 2026-09-08:
 | 5b | `python src/check_granule.py ab 025_091 025_019` (control) | both arms near 0.9, delta ≈ +0.004 — a run that fails this is measuring the harness, not the granule |
 | 6 | inference from a tree holding only the bundle + one GeoTIFF | works; and `--grounded-only` exits naming `_context_masks_<granule>_t512.npz` |
 | 7 | every flag named in `docs/` and `scripts/` | resolves to a real `add_argument` |
+| N1 | cut 40 of `025_019`'s tiles with `read_amp`, score them through `NisarGate.predict_proba` | **exactly equal** to `data/maps/gate_sar_025_019.npz` — same `featurize`, same bundle, no resample at 5 m, so any deviation at all is a bug rather than a tolerance. Verified 2026-09-15: maxdiff **0.0** |
+| N2 | `NisarGate().threshold`, and `predict()` with no `thresh` | **0.33301181457431456**, mode `recall>=0.95`; over the full `025_019` tiling that cut flags **2327 of 9236**, the same number as control 3 |
+| N3 | an all-zero tile and a 60%-nodata tile mixed into a batch of real ones | output length preserved, both unscoreable tiles `NaN` (`False` from `predict`), the real tiles' scores unchanged; `NisarGate(px_m=2.5)` raises naming `train_px_m_positive`, and a negative (dB) array raises rather than scoring |
 
 Steps 3 and 4 are slow (~7 min and ~5 min); run them in the background rather than trimming
-them, and don't run them at the same time — they will fight over cores.
+them, and don't run them at the same time — they will fight over cores. N1-N3 take under a
+minute, but they read the granule, so `data/nisar/` must be present.
+
+**N1 is the control that matters** for `src/gate_predict.py`. The API is additive — the CLI
+was deliberately not refactored onto it, so the pinned controls above keep testing the CLI
+rather than testing new code twice — which makes exact agreement the only thing tying the two
+paths together. It is exact rather than approximate because there is no resample and no
+re-derived normalisation anywhere between them.
 
 ## Writing a lesson
 

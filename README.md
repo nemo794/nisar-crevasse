@@ -41,6 +41,39 @@ depend on the threshold, so this takes seconds instead of minutes:
 python src/render_score_map.py data/maps/gate_sar_025_019.npz --gate-thresh 0.65
 ```
 
+## Python API: N tiles in, N labels out
+
+For a deployed pipeline that already holds tiles in memory and should not have to write
+rasters to a temp directory to call its own model:
+
+```python
+from gate_predict import NisarGate
+
+g = NisarGate()
+p = g.predict_proba(amp)      # amp (N, 512, 512) -> (N,) float32 probabilities
+keep = g.predict(amp)         # (N,) bool at the bundle's own threshold, 0.33301
+```
+
+The input contract, all of it load-bearing:
+
+| | |
+|---|---|
+| units | **linear amplitude**, what the GSLC GeoTIFFs hold — not dB, not power. A negative value raises rather than scoring |
+| spacing | **5.0 m**. `NisarGate(px_m=...)` is the *native* spacing of the granule the tiles were cut from, and a spacing the bundle never saw a crevasse label at is refused (`allow_unseen_spacing=True` overrides) |
+| shape | `(N, 512, 512)` or `(512, 512)`. 512 is fixed: the FFT block reads four 384 px corner windows |
+| nodata | **0 or NaN**. A tile under 50% valid is not scored |
+
+**N in, N out, same order.** An unscoreable tile is `NaN` from `predict_proba` and `False`
+from `predict` — never dropped, never reordered, so the result indexes against your own
+tile list directly.
+
+`predict()` defaults to the bundle's `threshold` and also exposes `threshold_mode`, which
+is `recall>=0.95` — a recall target chosen on out-of-fold probabilities, not a tuned
+optimum. Pass `thresh=` to override.
+
+The API is additive: `src/map_crevasse_tiles.py` keeps its own path, so the pinned controls
+still test the CLI rather than testing this code twice.
+
 ## Retrain
 
 ```bash
@@ -76,6 +109,7 @@ effort rather than after.
 | `src/gate_common.py` | shared constants, granule lookup, the 14 hand features |
 | `src/train_gate_classifier.py` | feature extraction, training, CV, threshold calibration |
 | `src/map_crevasse_tiles.py` | inference over a whole granule + map rendering |
+| `src/gate_predict.py` | array-in Python API — `NisarGate`, N tiles in, N labels out |
 | `src/render_score_map.py` | re-render a saved score file at a new threshold |
 | `src/eval_holdout.py` | score a held-out label set |
 | `src/check_granule.py` | granule acceptance tests — run these on anything new |

@@ -1,0 +1,13 @@
+# NISAR granules -- ~10 GB each, see docs/DATA.md
+data/nisar/*.tif
+data/nisar/*.h5
+
+# inference output
+data/maps/
+
+# retrained bundles (the shipped one is data/gate_5m_freqA_2gran.joblib and IS tracked)
+data/gate_retrained*.joblib
+
+__pycache__/
+*.pyc
+.DS_Store
