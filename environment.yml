@@ -1,23 +1,44 @@
-# Everything the gate needs, and nothing else. Deliberately torch-free: the only
-# PyTorch dependency was a ResNet18 baseline that is not part of the shipped model,
-# so both training and inference run on scikit-learn alone.
+# Union of all six pre-merge repos' environments (nisar-crevasse-{gate,unet,pipeline},
+# biomass-crevasse-{gate,unet,pipeline}) -- this repo imports both sensors' gate and
+# U-Net code in the same process (src/common/pipeline.py's Pipeline()), so unlike either
+# sensor's RF-only gate path there is no torch-free path to preserve here. That mirrors
+# the same reasoning both pipeline repos' own environment.yml already gave for the
+# identical decision.
 #
 #   conda env create -f environment.yml
-#   conda activate nisar-gate
+#   conda activate crevasse
 #
-# Named nisar-gate rather than biomass so it can coexist with the research env.
-name: nisar-gate
+# The RF-only, torch-free invariant each sensor's *own* gate still documents
+# (docs/nisar/CONTRIBUTING.md, docs/biomass/GATE_CONTRIBUTING.md) is tested against a
+# narrower env, not this one -- see environment-cnn.yml for BIOMASS's CNN-gate env and
+# its own torch-free/torch-required boundary test.
+name: crevasse
 channels:
   - conda-forge
+  - nodefaults
 dependencies:
   - python=3.11
   - numpy
   - scipy
   - rasterio            # granule I/O, windowed reads, WarpedVRT for context rasters
-  - scikit-image        # GLCM, structure tensor, NL-means despeckle, registration
-  - scikit-learn        # the random forest and the CV splitters
+  - scikit-image        # NISAR gate: GLCM, structure tensor, NL-means despeckle
+  - scikit-learn        # both gates: the random forest and the CV splitters
   - joblib              # model bundle serialisation + tile-level parallelism
-  - opencv              # resize in read_amp
-  - matplotlib          # map rendering
-  - pandas              # src/plot_granule_layers.py only -- not on the inference path
+  - opencv              # NISAR gate: resize in read_amp
+  - matplotlib          # map/figure rendering
+  - pandas              # nisar/plot_granule_layers.py only -- not on the inference path
   - tqdm
+  - tensorboard         # U-Net training
+  - pytest              # tests/ -- pure-logic unit tests only, see tests/README.md
+  - pip
+  - pip:
+      # torch comes from pip, NOT conda's `pytorch` package -- see the note in the
+      # original nisar-crevasse-unet/environment.yml (now docs/nisar/UNET_PIPELINE.md's
+      # history) about overlaying two torch trees in one site-packages. For a specific
+      # CUDA build: pip install torch --index-url https://download.pytorch.org/whl/cu126
+      - torch
+      - safetensors
+      # >=2.0 REQUIRED -- the 1.x GaussNoise kwarg was `var_limit`; 2.x renamed it to
+      # `std_range` and silently ignores unknown kwargs. Both U-Nets' *_check_labels.py
+      # scripts assert no kwarg was dropped; run one after any env change.
+      - albumentations>=2.0

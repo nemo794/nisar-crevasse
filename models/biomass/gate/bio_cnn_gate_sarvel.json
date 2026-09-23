@@ -1,0 +1,569 @@
+{
+  "__type__": "dict",
+  "items": {
+    "nets": {
+      "__type__": "list",
+      "items": [
+        {
+          "__type__": "dict",
+          "items": {
+            "state_dict": {
+              "__type__": "dict",
+              "items": {
+                "body.0.weight": {
+                  "__type__": "tensor",
+                  "key": "nets.0.state_dict.body.0.weight"
+                },
+                "body.1.weight": {
+                  "__type__": "tensor",
+                  "key": "nets.0.state_dict.body.1.weight"
+                },
+                "body.1.bias": {
+                  "__type__": "tensor",
+                  "key": "nets.0.state_dict.body.1.bias"
+                },
+                "body.1.running_mean": {
+                  "__type__": "tensor",
+                  "key": "nets.0.state_dict.body.1.running_mean"
+                },
+                "body.1.running_var": {
+                  "__type__": "tensor",
+                  "key": "nets.0.state_dict.body.1.running_var"
+                },
+                "body.1.num_batches_tracked": {
+                  "__type__": "tensor",
+                  "key": "nets.0.state_dict.body.1.num_batches_tracked"
+                },
+                "body.3.weight": {
+                  "__type__": "tensor",
+                  "key": "nets.0.state_dict.body.3.weight"
+                },
+                "body.4.weight": {
+                  "__type__": "tensor",
+                  "key": "nets.0.state_dict.body.4.weight"
+                },
+                "body.4.bias": {
+                  "__type__": "tensor",
+                  "key": "nets.0.state_dict.body.4.bias"
+                },
+                "body.4.running_mean": {
+                  "__type__": "tensor",
+                  "key": "nets.0.state_dict.body.4.running_mean"
+                },
+                "body.4.running_var": {
+                  "__type__": "tensor",
+                  "key": "nets.0.state_dict.body.4.running_var"
+                },
+                "body.4.num_batches_tracked": {
+                  "__type__": "tensor",
+                  "key": "nets.0.state_dict.body.4.num_batches_tracked"
+                },
+                "body.6.weight": {
+                  "__type__": "tensor",
+                  "key": "nets.0.state_dict.body.6.weight"
+                },
+                "body.7.weight": {
+                  "__type__": "tensor",
+                  "key": "nets.0.state_dict.body.7.weight"
+                },
+                "body.7.bias": {
+                  "__type__": "tensor",
+                  "key": "nets.0.state_dict.body.7.bias"
+                },
+                "body.7.running_mean": {
+                  "__type__": "tensor",
+                  "key": "nets.0.state_dict.body.7.running_mean"
+                },
+                "body.7.running_var": {
+                  "__type__": "tensor",
+                  "key": "nets.0.state_dict.body.7.running_var"
+                },
+                "body.7.num_batches_tracked": {
+                  "__type__": "tensor",
+                  "key": "nets.0.state_dict.body.7.num_batches_tracked"
+                },
+                "body.9.weight": {
+                  "__type__": "tensor",
+                  "key": "nets.0.state_dict.body.9.weight"
+                },
+                "body.10.weight": {
+                  "__type__": "tensor",
+                  "key": "nets.0.state_dict.body.10.weight"
+                },
+                "body.10.bias": {
+                  "__type__": "tensor",
+                  "key": "nets.0.state_dict.body.10.bias"
+                },
+                "body.10.running_mean": {
+                  "__type__": "tensor",
+                  "key": "nets.0.state_dict.body.10.running_mean"
+                },
+                "body.10.running_var": {
+                  "__type__": "tensor",
+                  "key": "nets.0.state_dict.body.10.running_var"
+                },
+                "body.10.num_batches_tracked": {
+                  "__type__": "tensor",
+                  "key": "nets.0.state_dict.body.10.num_batches_tracked"
+                },
+                "head.0.weight": {
+                  "__type__": "tensor",
+                  "key": "nets.0.state_dict.head.0.weight"
+                },
+                "head.0.bias": {
+                  "__type__": "tensor",
+                  "key": "nets.0.state_dict.head.0.bias"
+                },
+                "head.2.weight": {
+                  "__type__": "tensor",
+                  "key": "nets.0.state_dict.head.2.weight"
+                },
+                "head.2.bias": {
+                  "__type__": "tensor",
+                  "key": "nets.0.state_dict.head.2.bias"
+                }
+              }
+            },
+            "mu": {
+              "__type__": "scalar",
+              "value": -15.423377297040973
+            },
+            "sd": {
+              "__type__": "scalar",
+              "value": 8.978185075042754
+            },
+            "ctx_mean": {
+              "__type__": "ndarray",
+              "key": "nets.0.ctx_mean",
+              "dtype": "float64"
+            },
+            "ctx_std": {
+              "__type__": "ndarray",
+              "key": "nets.0.ctx_std",
+              "dtype": "float64"
+            },
+            "in_ch": {
+              "__type__": "scalar",
+              "value": 4
+            },
+            "n_ctx": {
+              "__type__": "scalar",
+              "value": 1
+            },
+            "seed": {
+              "__type__": "scalar",
+              "value": 0
+            }
+          }
+        },
+        {
+          "__type__": "dict",
+          "items": {
+            "state_dict": {
+              "__type__": "dict",
+              "items": {
+                "body.0.weight": {
+                  "__type__": "tensor",
+                  "key": "nets.1.state_dict.body.0.weight"
+                },
+                "body.1.weight": {
+                  "__type__": "tensor",
+                  "key": "nets.1.state_dict.body.1.weight"
+                },
+                "body.1.bias": {
+                  "__type__": "tensor",
+                  "key": "nets.1.state_dict.body.1.bias"
+                },
+                "body.1.running_mean": {
+                  "__type__": "tensor",
+                  "key": "nets.1.state_dict.body.1.running_mean"
+                },
+                "body.1.running_var": {
+                  "__type__": "tensor",
+                  "key": "nets.1.state_dict.body.1.running_var"
+                },
+                "body.1.num_batches_tracked": {
+                  "__type__": "tensor",
+                  "key": "nets.1.state_dict.body.1.num_batches_tracked"
+                },
+                "body.3.weight": {
+                  "__type__": "tensor",
+                  "key": "nets.1.state_dict.body.3.weight"
+                },
+                "body.4.weight": {
+                  "__type__": "tensor",
+                  "key": "nets.1.state_dict.body.4.weight"
+                },
+                "body.4.bias": {
+                  "__type__": "tensor",
+                  "key": "nets.1.state_dict.body.4.bias"
+                },
+                "body.4.running_mean": {
+                  "__type__": "tensor",
+                  "key": "nets.1.state_dict.body.4.running_mean"
+                },
+                "body.4.running_var": {
+                  "__type__": "tensor",
+                  "key": "nets.1.state_dict.body.4.running_var"
+                },
+                "body.4.num_batches_tracked": {
+                  "__type__": "tensor",
+                  "key": "nets.1.state_dict.body.4.num_batches_tracked"
+                },
+                "body.6.weight": {
+                  "__type__": "tensor",
+                  "key": "nets.1.state_dict.body.6.weight"
+                },
+                "body.7.weight": {
+                  "__type__": "tensor",
+                  "key": "nets.1.state_dict.body.7.weight"
+                },
+                "body.7.bias": {
+                  "__type__": "tensor",
+                  "key": "nets.1.state_dict.body.7.bias"
+                },
+                "body.7.running_mean": {
+                  "__type__": "tensor",
+                  "key": "nets.1.state_dict.body.7.running_mean"
+                },
+                "body.7.running_var": {
+                  "__type__": "tensor",
+                  "key": "nets.1.state_dict.body.7.running_var"
+                },
+                "body.7.num_batches_tracked": {
+                  "__type__": "tensor",
+                  "key": "nets.1.state_dict.body.7.num_batches_tracked"
+                },
+                "body.9.weight": {
+                  "__type__": "tensor",
+                  "key": "nets.1.state_dict.body.9.weight"
+                },
+                "body.10.weight": {
+                  "__type__": "tensor",
+                  "key": "nets.1.state_dict.body.10.weight"
+                },
+                "body.10.bias": {
+                  "__type__": "tensor",
+                  "key": "nets.1.state_dict.body.10.bias"
+                },
+                "body.10.running_mean": {
+                  "__type__": "tensor",
+                  "key": "nets.1.state_dict.body.10.running_mean"
+                },
+                "body.10.running_var": {
+                  "__type__": "tensor",
+                  "key": "nets.1.state_dict.body.10.running_var"
+                },
+                "body.10.num_batches_tracked": {
+                  "__type__": "tensor",
+                  "key": "nets.1.state_dict.body.10.num_batches_tracked"
+                },
+                "head.0.weight": {
+                  "__type__": "tensor",
+                  "key": "nets.1.state_dict.head.0.weight"
+                },
+                "head.0.bias": {
+                  "__type__": "tensor",
+                  "key": "nets.1.state_dict.head.0.bias"
+                },
+                "head.2.weight": {
+                  "__type__": "tensor",
+                  "key": "nets.1.state_dict.head.2.weight"
+                },
+                "head.2.bias": {
+                  "__type__": "tensor",
+                  "key": "nets.1.state_dict.head.2.bias"
+                }
+              }
+            },
+            "mu": {
+              "__type__": "scalar",
+              "value": -15.423377297040973
+            },
+            "sd": {
+              "__type__": "scalar",
+              "value": 8.978185075042754
+            },
+            "ctx_mean": {
+              "__type__": "ndarray",
+              "key": "nets.1.ctx_mean",
+              "dtype": "float64"
+            },
+            "ctx_std": {
+              "__type__": "ndarray",
+              "key": "nets.1.ctx_std",
+              "dtype": "float64"
+            },
+            "in_ch": {
+              "__type__": "scalar",
+              "value": 4
+            },
+            "n_ctx": {
+              "__type__": "scalar",
+              "value": 1
+            },
+            "seed": {
+              "__type__": "scalar",
+              "value": 1
+            }
+          }
+        },
+        {
+          "__type__": "dict",
+          "items": {
+            "state_dict": {
+              "__type__": "dict",
+              "items": {
+                "body.0.weight": {
+                  "__type__": "tensor",
+                  "key": "nets.2.state_dict.body.0.weight"
+                },
+                "body.1.weight": {
+                  "__type__": "tensor",
+                  "key": "nets.2.state_dict.body.1.weight"
+                },
+                "body.1.bias": {
+                  "__type__": "tensor",
+                  "key": "nets.2.state_dict.body.1.bias"
+                },
+                "body.1.running_mean": {
+                  "__type__": "tensor",
+                  "key": "nets.2.state_dict.body.1.running_mean"
+                },
+                "body.1.running_var": {
+                  "__type__": "tensor",
+                  "key": "nets.2.state_dict.body.1.running_var"
+                },
+                "body.1.num_batches_tracked": {
+                  "__type__": "tensor",
+                  "key": "nets.2.state_dict.body.1.num_batches_tracked"
+                },
+                "body.3.weight": {
+                  "__type__": "tensor",
+                  "key": "nets.2.state_dict.body.3.weight"
+                },
+                "body.4.weight": {
+                  "__type__": "tensor",
+                  "key": "nets.2.state_dict.body.4.weight"
+                },
+                "body.4.bias": {
+                  "__type__": "tensor",
+                  "key": "nets.2.state_dict.body.4.bias"
+                },
+                "body.4.running_mean": {
+                  "__type__": "tensor",
+                  "key": "nets.2.state_dict.body.4.running_mean"
+                },
+                "body.4.running_var": {
+                  "__type__": "tensor",
+                  "key": "nets.2.state_dict.body.4.running_var"
+                },
+                "body.4.num_batches_tracked": {
+                  "__type__": "tensor",
+                  "key": "nets.2.state_dict.body.4.num_batches_tracked"
+                },
+                "body.6.weight": {
+                  "__type__": "tensor",
+                  "key": "nets.2.state_dict.body.6.weight"
+                },
+                "body.7.weight": {
+                  "__type__": "tensor",
+                  "key": "nets.2.state_dict.body.7.weight"
+                },
+                "body.7.bias": {
+                  "__type__": "tensor",
+                  "key": "nets.2.state_dict.body.7.bias"
+                },
+                "body.7.running_mean": {
+                  "__type__": "tensor",
+                  "key": "nets.2.state_dict.body.7.running_mean"
+                },
+                "body.7.running_var": {
+                  "__type__": "tensor",
+                  "key": "nets.2.state_dict.body.7.running_var"
+                },
+                "body.7.num_batches_tracked": {
+                  "__type__": "tensor",
+                  "key": "nets.2.state_dict.body.7.num_batches_tracked"
+                },
+                "body.9.weight": {
+                  "__type__": "tensor",
+                  "key": "nets.2.state_dict.body.9.weight"
+                },
+                "body.10.weight": {
+                  "__type__": "tensor",
+                  "key": "nets.2.state_dict.body.10.weight"
+                },
+                "body.10.bias": {
+                  "__type__": "tensor",
+                  "key": "nets.2.state_dict.body.10.bias"
+                },
+                "body.10.running_mean": {
+                  "__type__": "tensor",
+                  "key": "nets.2.state_dict.body.10.running_mean"
+                },
+                "body.10.running_var": {
+                  "__type__": "tensor",
+                  "key": "nets.2.state_dict.body.10.running_var"
+                },
+                "body.10.num_batches_tracked": {
+                  "__type__": "tensor",
+                  "key": "nets.2.state_dict.body.10.num_batches_tracked"
+                },
+                "head.0.weight": {
+                  "__type__": "tensor",
+                  "key": "nets.2.state_dict.head.0.weight"
+                },
+                "head.0.bias": {
+                  "__type__": "tensor",
+                  "key": "nets.2.state_dict.head.0.bias"
+                },
+                "head.2.weight": {
+                  "__type__": "tensor",
+                  "key": "nets.2.state_dict.head.2.weight"
+                },
+                "head.2.bias": {
+                  "__type__": "tensor",
+                  "key": "nets.2.state_dict.head.2.bias"
+                }
+              }
+            },
+            "mu": {
+              "__type__": "scalar",
+              "value": -15.423377297040973
+            },
+            "sd": {
+              "__type__": "scalar",
+              "value": 8.978185075042754
+            },
+            "ctx_mean": {
+              "__type__": "ndarray",
+              "key": "nets.2.ctx_mean",
+              "dtype": "float64"
+            },
+            "ctx_std": {
+              "__type__": "ndarray",
+              "key": "nets.2.ctx_std",
+              "dtype": "float64"
+            },
+            "in_ch": {
+              "__type__": "scalar",
+              "value": 4
+            },
+            "n_ctx": {
+              "__type__": "scalar",
+              "value": 1
+            },
+            "seed": {
+              "__type__": "scalar",
+              "value": 2
+            }
+          }
+        }
+      ]
+    },
+    "arm": {
+      "__type__": "scalar",
+      "value": "sar+vel"
+    },
+    "epochs": {
+      "__type__": "scalar",
+      "value": 30
+    },
+    "seeds": {
+      "__type__": "scalar",
+      "value": 3
+    },
+    "chip": {
+      "__type__": "scalar",
+      "value": 128
+    },
+    "tile_px": {
+      "__type__": "scalar",
+      "value": 512
+    },
+    "px_m": {
+      "__type__": "scalar",
+      "value": 5.0
+    },
+    "n_train": {
+      "__type__": "scalar",
+      "value": 4244
+    },
+    "train_base_rate": {
+      "__type__": "scalar",
+      "value": 0.4590009425070688
+    },
+    "train_granules": {
+      "__type__": "list",
+      "items": [
+        {
+          "__type__": "scalar",
+          "value": "BIO_S1_SCS__1S_20251126T135534_20251126T135555_T_G01_M01_C02_T038_F245_02_DV6GT7"
+        },
+        {
+          "__type__": "scalar",
+          "value": "BIO_S1_SCS__1S_20260215T140018_20260215T140039_T_G01_M02_C02_T038_F245_01_DMWB5O"
+        },
+        {
+          "__type__": "scalar",
+          "value": "BIO_S2_SCS__1S_20251217T135546_20251217T135607_T_G01_M01_C02_T038_F245_01_DJT7YH"
+        },
+        {
+          "__type__": "scalar",
+          "value": "BIO_S2_SCS__1S_20260308T140031_20260308T140052_T_G01_M02_C02_T038_F245_01_DNZESH"
+        },
+        {
+          "__type__": "scalar",
+          "value": "BIO_S2_SCS__1S_20260519T140512_20260519T140532_T_G01_M03_C02_T038_F245_02_DRP7P7"
+        },
+        {
+          "__type__": "scalar",
+          "value": "BIO_S3_SCS__1S_20260107T135559_20260107T135620_T_G01_M01_C02_T038_F245_01_DKW0CE"
+        }
+      ]
+    },
+    "in_sample_auc": {
+      "__type__": "list",
+      "items": [
+        {
+          "__type__": "scalar",
+          "value": 0.9909307947398922
+        },
+        {
+          "__type__": "scalar",
+          "value": 0.990763554507795
+        },
+        {
+          "__type__": "scalar",
+          "value": 0.9926396411221372
+        }
+      ]
+    },
+    "buffered_fold_auc": {
+      "__type__": "list",
+      "items": [
+        {
+          "__type__": "scalar",
+          "value": 0.806
+        },
+        {
+          "__type__": "scalar",
+          "value": 0.944
+        },
+        {
+          "__type__": "scalar",
+          "value": 0.888
+        }
+      ]
+    },
+    "buffered_fold_note": {
+      "__type__": "scalar",
+      "value": "82 km blocks / 41 km buffer, 3 folds, n=1747; arm sar+vel; base rates 4/521, 559/947, 12/279. From bio_cnn_gate.py, not from these full-fit weights."
+    },
+    "no_threshold_note": {
+      "__type__": "scalar",
+      "value": "There is no shipped operating point. Lift over base rate at P>=0.65 is 0.00x / 1.67x / 2.45x per fold. See docs/RESULTS.md."
+    }
+  }
+}

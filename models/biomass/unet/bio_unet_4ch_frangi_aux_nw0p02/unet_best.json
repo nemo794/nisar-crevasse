@@ -1,0 +1,2588 @@
+{
+  "__type__": "dict",
+  "items": {
+    "epoch": {
+      "__type__": "scalar",
+      "value": 175
+    },
+    "model_state_dict": {
+      "__type__": "dict",
+      "items": {
+        "inc.double_conv.0.weight": {
+          "__type__": "tensor",
+          "key": "model_state_dict.inc.double_conv.0.weight"
+        },
+        "inc.double_conv.1.weight": {
+          "__type__": "tensor",
+          "key": "model_state_dict.inc.double_conv.1.weight"
+        },
+        "inc.double_conv.1.bias": {
+          "__type__": "tensor",
+          "key": "model_state_dict.inc.double_conv.1.bias"
+        },
+        "inc.double_conv.1.running_mean": {
+          "__type__": "tensor",
+          "key": "model_state_dict.inc.double_conv.1.running_mean"
+        },
+        "inc.double_conv.1.running_var": {
+          "__type__": "tensor",
+          "key": "model_state_dict.inc.double_conv.1.running_var"
+        },
+        "inc.double_conv.1.num_batches_tracked": {
+          "__type__": "tensor",
+          "key": "model_state_dict.inc.double_conv.1.num_batches_tracked"
+        },
+        "inc.double_conv.3.weight": {
+          "__type__": "tensor",
+          "key": "model_state_dict.inc.double_conv.3.weight"
+        },
+        "inc.double_conv.4.weight": {
+          "__type__": "tensor",
+          "key": "model_state_dict.inc.double_conv.4.weight"
+        },
+        "inc.double_conv.4.bias": {
+          "__type__": "tensor",
+          "key": "model_state_dict.inc.double_conv.4.bias"
+        },
+        "inc.double_conv.4.running_mean": {
+          "__type__": "tensor",
+          "key": "model_state_dict.inc.double_conv.4.running_mean"
+        },
+        "inc.double_conv.4.running_var": {
+          "__type__": "tensor",
+          "key": "model_state_dict.inc.double_conv.4.running_var"
+        },
+        "inc.double_conv.4.num_batches_tracked": {
+          "__type__": "tensor",
+          "key": "model_state_dict.inc.double_conv.4.num_batches_tracked"
+        },
+        "down1.maxpool_conv.1.double_conv.0.weight": {
+          "__type__": "tensor",
+          "key": "model_state_dict.down1.maxpool_conv.1.double_conv.0.weight"
+        },
+        "down1.maxpool_conv.1.double_conv.1.weight": {
+          "__type__": "tensor",
+          "key": "model_state_dict.down1.maxpool_conv.1.double_conv.1.weight"
+        },
+        "down1.maxpool_conv.1.double_conv.1.bias": {
+          "__type__": "tensor",
+          "key": "model_state_dict.down1.maxpool_conv.1.double_conv.1.bias"
+        },
+        "down1.maxpool_conv.1.double_conv.1.running_mean": {
+          "__type__": "tensor",
+          "key": "model_state_dict.down1.maxpool_conv.1.double_conv.1.running_mean"
+        },
+        "down1.maxpool_conv.1.double_conv.1.running_var": {
+          "__type__": "tensor",
+          "key": "model_state_dict.down1.maxpool_conv.1.double_conv.1.running_var"
+        },
+        "down1.maxpool_conv.1.double_conv.1.num_batches_tracked": {
+          "__type__": "tensor",
+          "key": "model_state_dict.down1.maxpool_conv.1.double_conv.1.num_batches_tracked"
+        },
+        "down1.maxpool_conv.1.double_conv.3.weight": {
+          "__type__": "tensor",
+          "key": "model_state_dict.down1.maxpool_conv.1.double_conv.3.weight"
+        },
+        "down1.maxpool_conv.1.double_conv.4.weight": {
+          "__type__": "tensor",
+          "key": "model_state_dict.down1.maxpool_conv.1.double_conv.4.weight"
+        },
+        "down1.maxpool_conv.1.double_conv.4.bias": {
+          "__type__": "tensor",
+          "key": "model_state_dict.down1.maxpool_conv.1.double_conv.4.bias"
+        },
+        "down1.maxpool_conv.1.double_conv.4.running_mean": {
+          "__type__": "tensor",
+          "key": "model_state_dict.down1.maxpool_conv.1.double_conv.4.running_mean"
+        },
+        "down1.maxpool_conv.1.double_conv.4.running_var": {
+          "__type__": "tensor",
+          "key": "model_state_dict.down1.maxpool_conv.1.double_conv.4.running_var"
+        },
+        "down1.maxpool_conv.1.double_conv.4.num_batches_tracked": {
+          "__type__": "tensor",
+          "key": "model_state_dict.down1.maxpool_conv.1.double_conv.4.num_batches_tracked"
+        },
+        "down2.maxpool_conv.1.double_conv.0.weight": {
+          "__type__": "tensor",
+          "key": "model_state_dict.down2.maxpool_conv.1.double_conv.0.weight"
+        },
+        "down2.maxpool_conv.1.double_conv.1.weight": {
+          "__type__": "tensor",
+          "key": "model_state_dict.down2.maxpool_conv.1.double_conv.1.weight"
+        },
+        "down2.maxpool_conv.1.double_conv.1.bias": {
+          "__type__": "tensor",
+          "key": "model_state_dict.down2.maxpool_conv.1.double_conv.1.bias"
+        },
+        "down2.maxpool_conv.1.double_conv.1.running_mean": {
+          "__type__": "tensor",
+          "key": "model_state_dict.down2.maxpool_conv.1.double_conv.1.running_mean"
+        },
+        "down2.maxpool_conv.1.double_conv.1.running_var": {
+          "__type__": "tensor",
+          "key": "model_state_dict.down2.maxpool_conv.1.double_conv.1.running_var"
+        },
+        "down2.maxpool_conv.1.double_conv.1.num_batches_tracked": {
+          "__type__": "tensor",
+          "key": "model_state_dict.down2.maxpool_conv.1.double_conv.1.num_batches_tracked"
+        },
+        "down2.maxpool_conv.1.double_conv.3.weight": {
+          "__type__": "tensor",
+          "key": "model_state_dict.down2.maxpool_conv.1.double_conv.3.weight"
+        },
+        "down2.maxpool_conv.1.double_conv.4.weight": {
+          "__type__": "tensor",
+          "key": "model_state_dict.down2.maxpool_conv.1.double_conv.4.weight"
+        },
+        "down2.maxpool_conv.1.double_conv.4.bias": {
+          "__type__": "tensor",
+          "key": "model_state_dict.down2.maxpool_conv.1.double_conv.4.bias"
+        },
+        "down2.maxpool_conv.1.double_conv.4.running_mean": {
+          "__type__": "tensor",
+          "key": "model_state_dict.down2.maxpool_conv.1.double_conv.4.running_mean"
+        },
+        "down2.maxpool_conv.1.double_conv.4.running_var": {
+          "__type__": "tensor",
+          "key": "model_state_dict.down2.maxpool_conv.1.double_conv.4.running_var"
+        },
+        "down2.maxpool_conv.1.double_conv.4.num_batches_tracked": {
+          "__type__": "tensor",
+          "key": "model_state_dict.down2.maxpool_conv.1.double_conv.4.num_batches_tracked"
+        },
+        "down3.maxpool_conv.1.double_conv.0.weight": {
+          "__type__": "tensor",
+          "key": "model_state_dict.down3.maxpool_conv.1.double_conv.0.weight"
+        },
+        "down3.maxpool_conv.1.double_conv.1.weight": {
+          "__type__": "tensor",
+          "key": "model_state_dict.down3.maxpool_conv.1.double_conv.1.weight"
+        },
+        "down3.maxpool_conv.1.double_conv.1.bias": {
+          "__type__": "tensor",
+          "key": "model_state_dict.down3.maxpool_conv.1.double_conv.1.bias"
+        },
+        "down3.maxpool_conv.1.double_conv.1.running_mean": {
+          "__type__": "tensor",
+          "key": "model_state_dict.down3.maxpool_conv.1.double_conv.1.running_mean"
+        },
+        "down3.maxpool_conv.1.double_conv.1.running_var": {
+          "__type__": "tensor",
+          "key": "model_state_dict.down3.maxpool_conv.1.double_conv.1.running_var"
+        },
+        "down3.maxpool_conv.1.double_conv.1.num_batches_tracked": {
+          "__type__": "tensor",
+          "key": "model_state_dict.down3.maxpool_conv.1.double_conv.1.num_batches_tracked"
+        },
+        "down3.maxpool_conv.1.double_conv.3.weight": {
+          "__type__": "tensor",
+          "key": "model_state_dict.down3.maxpool_conv.1.double_conv.3.weight"
+        },
+        "down3.maxpool_conv.1.double_conv.4.weight": {
+          "__type__": "tensor",
+          "key": "model_state_dict.down3.maxpool_conv.1.double_conv.4.weight"
+        },
+        "down3.maxpool_conv.1.double_conv.4.bias": {
+          "__type__": "tensor",
+          "key": "model_state_dict.down3.maxpool_conv.1.double_conv.4.bias"
+        },
+        "down3.maxpool_conv.1.double_conv.4.running_mean": {
+          "__type__": "tensor",
+          "key": "model_state_dict.down3.maxpool_conv.1.double_conv.4.running_mean"
+        },
+        "down3.maxpool_conv.1.double_conv.4.running_var": {
+          "__type__": "tensor",
+          "key": "model_state_dict.down3.maxpool_conv.1.double_conv.4.running_var"
+        },
+        "down3.maxpool_conv.1.double_conv.4.num_batches_tracked": {
+          "__type__": "tensor",
+          "key": "model_state_dict.down3.maxpool_conv.1.double_conv.4.num_batches_tracked"
+        },
+        "down4.maxpool_conv.1.double_conv.0.weight": {
+          "__type__": "tensor",
+          "key": "model_state_dict.down4.maxpool_conv.1.double_conv.0.weight"
+        },
+        "down4.maxpool_conv.1.double_conv.1.weight": {
+          "__type__": "tensor",
+          "key": "model_state_dict.down4.maxpool_conv.1.double_conv.1.weight"
+        },
+        "down4.maxpool_conv.1.double_conv.1.bias": {
+          "__type__": "tensor",
+          "key": "model_state_dict.down4.maxpool_conv.1.double_conv.1.bias"
+        },
+        "down4.maxpool_conv.1.double_conv.1.running_mean": {
+          "__type__": "tensor",
+          "key": "model_state_dict.down4.maxpool_conv.1.double_conv.1.running_mean"
+        },
+        "down4.maxpool_conv.1.double_conv.1.running_var": {
+          "__type__": "tensor",
+          "key": "model_state_dict.down4.maxpool_conv.1.double_conv.1.running_var"
+        },
+        "down4.maxpool_conv.1.double_conv.1.num_batches_tracked": {
+          "__type__": "tensor",
+          "key": "model_state_dict.down4.maxpool_conv.1.double_conv.1.num_batches_tracked"
+        },
+        "down4.maxpool_conv.1.double_conv.3.weight": {
+          "__type__": "tensor",
+          "key": "model_state_dict.down4.maxpool_conv.1.double_conv.3.weight"
+        },
+        "down4.maxpool_conv.1.double_conv.4.weight": {
+          "__type__": "tensor",
+          "key": "model_state_dict.down4.maxpool_conv.1.double_conv.4.weight"
+        },
+        "down4.maxpool_conv.1.double_conv.4.bias": {
+          "__type__": "tensor",
+          "key": "model_state_dict.down4.maxpool_conv.1.double_conv.4.bias"
+        },
+        "down4.maxpool_conv.1.double_conv.4.running_mean": {
+          "__type__": "tensor",
+          "key": "model_state_dict.down4.maxpool_conv.1.double_conv.4.running_mean"
+        },
+        "down4.maxpool_conv.1.double_conv.4.running_var": {
+          "__type__": "tensor",
+          "key": "model_state_dict.down4.maxpool_conv.1.double_conv.4.running_var"
+        },
+        "down4.maxpool_conv.1.double_conv.4.num_batches_tracked": {
+          "__type__": "tensor",
+          "key": "model_state_dict.down4.maxpool_conv.1.double_conv.4.num_batches_tracked"
+        },
+        "up1.conv.double_conv.0.weight": {
+          "__type__": "tensor",
+          "key": "model_state_dict.up1.conv.double_conv.0.weight"
+        },
+        "up1.conv.double_conv.1.weight": {
+          "__type__": "tensor",
+          "key": "model_state_dict.up1.conv.double_conv.1.weight"
+        },
+        "up1.conv.double_conv.1.bias": {
+          "__type__": "tensor",
+          "key": "model_state_dict.up1.conv.double_conv.1.bias"
+        },
+        "up1.conv.double_conv.1.running_mean": {
+          "__type__": "tensor",
+          "key": "model_state_dict.up1.conv.double_conv.1.running_mean"
+        },
+        "up1.conv.double_conv.1.running_var": {
+          "__type__": "tensor",
+          "key": "model_state_dict.up1.conv.double_conv.1.running_var"
+        },
+        "up1.conv.double_conv.1.num_batches_tracked": {
+          "__type__": "tensor",
+          "key": "model_state_dict.up1.conv.double_conv.1.num_batches_tracked"
+        },
+        "up1.conv.double_conv.3.weight": {
+          "__type__": "tensor",
+          "key": "model_state_dict.up1.conv.double_conv.3.weight"
+        },
+        "up1.conv.double_conv.4.weight": {
+          "__type__": "tensor",
+          "key": "model_state_dict.up1.conv.double_conv.4.weight"
+        },
+        "up1.conv.double_conv.4.bias": {
+          "__type__": "tensor",
+          "key": "model_state_dict.up1.conv.double_conv.4.bias"
+        },
+        "up1.conv.double_conv.4.running_mean": {
+          "__type__": "tensor",
+          "key": "model_state_dict.up1.conv.double_conv.4.running_mean"
+        },
+        "up1.conv.double_conv.4.running_var": {
+          "__type__": "tensor",
+          "key": "model_state_dict.up1.conv.double_conv.4.running_var"
+        },
+        "up1.conv.double_conv.4.num_batches_tracked": {
+          "__type__": "tensor",
+          "key": "model_state_dict.up1.conv.double_conv.4.num_batches_tracked"
+        },
+        "up2.conv.double_conv.0.weight": {
+          "__type__": "tensor",
+          "key": "model_state_dict.up2.conv.double_conv.0.weight"
+        },
+        "up2.conv.double_conv.1.weight": {
+          "__type__": "tensor",
+          "key": "model_state_dict.up2.conv.double_conv.1.weight"
+        },
+        "up2.conv.double_conv.1.bias": {
+          "__type__": "tensor",
+          "key": "model_state_dict.up2.conv.double_conv.1.bias"
+        },
+        "up2.conv.double_conv.1.running_mean": {
+          "__type__": "tensor",
+          "key": "model_state_dict.up2.conv.double_conv.1.running_mean"
+        },
+        "up2.conv.double_conv.1.running_var": {
+          "__type__": "tensor",
+          "key": "model_state_dict.up2.conv.double_conv.1.running_var"
+        },
+        "up2.conv.double_conv.1.num_batches_tracked": {
+          "__type__": "tensor",
+          "key": "model_state_dict.up2.conv.double_conv.1.num_batches_tracked"
+        },
+        "up2.conv.double_conv.3.weight": {
+          "__type__": "tensor",
+          "key": "model_state_dict.up2.conv.double_conv.3.weight"
+        },
+        "up2.conv.double_conv.4.weight": {
+          "__type__": "tensor",
+          "key": "model_state_dict.up2.conv.double_conv.4.weight"
+        },
+        "up2.conv.double_conv.4.bias": {
+          "__type__": "tensor",
+          "key": "model_state_dict.up2.conv.double_conv.4.bias"
+        },
+        "up2.conv.double_conv.4.running_mean": {
+          "__type__": "tensor",
+          "key": "model_state_dict.up2.conv.double_conv.4.running_mean"
+        },
+        "up2.conv.double_conv.4.running_var": {
+          "__type__": "tensor",
+          "key": "model_state_dict.up2.conv.double_conv.4.running_var"
+        },
+        "up2.conv.double_conv.4.num_batches_tracked": {
+          "__type__": "tensor",
+          "key": "model_state_dict.up2.conv.double_conv.4.num_batches_tracked"
+        },
+        "up3.conv.double_conv.0.weight": {
+          "__type__": "tensor",
+          "key": "model_state_dict.up3.conv.double_conv.0.weight"
+        },
+        "up3.conv.double_conv.1.weight": {
+          "__type__": "tensor",
+          "key": "model_state_dict.up3.conv.double_conv.1.weight"
+        },
+        "up3.conv.double_conv.1.bias": {
+          "__type__": "tensor",
+          "key": "model_state_dict.up3.conv.double_conv.1.bias"
+        },
+        "up3.conv.double_conv.1.running_mean": {
+          "__type__": "tensor",
+          "key": "model_state_dict.up3.conv.double_conv.1.running_mean"
+        },
+        "up3.conv.double_conv.1.running_var": {
+          "__type__": "tensor",
+          "key": "model_state_dict.up3.conv.double_conv.1.running_var"
+        },
+        "up3.conv.double_conv.1.num_batches_tracked": {
+          "__type__": "tensor",
+          "key": "model_state_dict.up3.conv.double_conv.1.num_batches_tracked"
+        },
+        "up3.conv.double_conv.3.weight": {
+          "__type__": "tensor",
+          "key": "model_state_dict.up3.conv.double_conv.3.weight"
+        },
+        "up3.conv.double_conv.4.weight": {
+          "__type__": "tensor",
+          "key": "model_state_dict.up3.conv.double_conv.4.weight"
+        },
+        "up3.conv.double_conv.4.bias": {
+          "__type__": "tensor",
+          "key": "model_state_dict.up3.conv.double_conv.4.bias"
+        },
+        "up3.conv.double_conv.4.running_mean": {
+          "__type__": "tensor",
+          "key": "model_state_dict.up3.conv.double_conv.4.running_mean"
+        },
+        "up3.conv.double_conv.4.running_var": {
+          "__type__": "tensor",
+          "key": "model_state_dict.up3.conv.double_conv.4.running_var"
+        },
+        "up3.conv.double_conv.4.num_batches_tracked": {
+          "__type__": "tensor",
+          "key": "model_state_dict.up3.conv.double_conv.4.num_batches_tracked"
+        },
+        "up4.conv.double_conv.0.weight": {
+          "__type__": "tensor",
+          "key": "model_state_dict.up4.conv.double_conv.0.weight"
+        },
+        "up4.conv.double_conv.1.weight": {
+          "__type__": "tensor",
+          "key": "model_state_dict.up4.conv.double_conv.1.weight"
+        },
+        "up4.conv.double_conv.1.bias": {
+          "__type__": "tensor",
+          "key": "model_state_dict.up4.conv.double_conv.1.bias"
+        },
+        "up4.conv.double_conv.1.running_mean": {
+          "__type__": "tensor",
+          "key": "model_state_dict.up4.conv.double_conv.1.running_mean"
+        },
+        "up4.conv.double_conv.1.running_var": {
+          "__type__": "tensor",
+          "key": "model_state_dict.up4.conv.double_conv.1.running_var"
+        },
+        "up4.conv.double_conv.1.num_batches_tracked": {
+          "__type__": "tensor",
+          "key": "model_state_dict.up4.conv.double_conv.1.num_batches_tracked"
+        },
+        "up4.conv.double_conv.3.weight": {
+          "__type__": "tensor",
+          "key": "model_state_dict.up4.conv.double_conv.3.weight"
+        },
+        "up4.conv.double_conv.4.weight": {
+          "__type__": "tensor",
+          "key": "model_state_dict.up4.conv.double_conv.4.weight"
+        },
+        "up4.conv.double_conv.4.bias": {
+          "__type__": "tensor",
+          "key": "model_state_dict.up4.conv.double_conv.4.bias"
+        },
+        "up4.conv.double_conv.4.running_mean": {
+          "__type__": "tensor",
+          "key": "model_state_dict.up4.conv.double_conv.4.running_mean"
+        },
+        "up4.conv.double_conv.4.running_var": {
+          "__type__": "tensor",
+          "key": "model_state_dict.up4.conv.double_conv.4.running_var"
+        },
+        "up4.conv.double_conv.4.num_batches_tracked": {
+          "__type__": "tensor",
+          "key": "model_state_dict.up4.conv.double_conv.4.num_batches_tracked"
+        },
+        "outc.weight": {
+          "__type__": "tensor",
+          "key": "model_state_dict.outc.weight"
+        },
+        "outc.bias": {
+          "__type__": "tensor",
+          "key": "model_state_dict.outc.bias"
+        },
+        "up1_n.conv.double_conv.0.weight": {
+          "__type__": "tensor",
+          "key": "model_state_dict.up1_n.conv.double_conv.0.weight"
+        },
+        "up1_n.conv.double_conv.1.weight": {
+          "__type__": "tensor",
+          "key": "model_state_dict.up1_n.conv.double_conv.1.weight"
+        },
+        "up1_n.conv.double_conv.1.bias": {
+          "__type__": "tensor",
+          "key": "model_state_dict.up1_n.conv.double_conv.1.bias"
+        },
+        "up1_n.conv.double_conv.1.running_mean": {
+          "__type__": "tensor",
+          "key": "model_state_dict.up1_n.conv.double_conv.1.running_mean"
+        },
+        "up1_n.conv.double_conv.1.running_var": {
+          "__type__": "tensor",
+          "key": "model_state_dict.up1_n.conv.double_conv.1.running_var"
+        },
+        "up1_n.conv.double_conv.1.num_batches_tracked": {
+          "__type__": "tensor",
+          "key": "model_state_dict.up1_n.conv.double_conv.1.num_batches_tracked"
+        },
+        "up1_n.conv.double_conv.3.weight": {
+          "__type__": "tensor",
+          "key": "model_state_dict.up1_n.conv.double_conv.3.weight"
+        },
+        "up1_n.conv.double_conv.4.weight": {
+          "__type__": "tensor",
+          "key": "model_state_dict.up1_n.conv.double_conv.4.weight"
+        },
+        "up1_n.conv.double_conv.4.bias": {
+          "__type__": "tensor",
+          "key": "model_state_dict.up1_n.conv.double_conv.4.bias"
+        },
+        "up1_n.conv.double_conv.4.running_mean": {
+          "__type__": "tensor",
+          "key": "model_state_dict.up1_n.conv.double_conv.4.running_mean"
+        },
+        "up1_n.conv.double_conv.4.running_var": {
+          "__type__": "tensor",
+          "key": "model_state_dict.up1_n.conv.double_conv.4.running_var"
+        },
+        "up1_n.conv.double_conv.4.num_batches_tracked": {
+          "__type__": "tensor",
+          "key": "model_state_dict.up1_n.conv.double_conv.4.num_batches_tracked"
+        },
+        "up2_n.conv.double_conv.0.weight": {
+          "__type__": "tensor",
+          "key": "model_state_dict.up2_n.conv.double_conv.0.weight"
+        },
+        "up2_n.conv.double_conv.1.weight": {
+          "__type__": "tensor",
+          "key": "model_state_dict.up2_n.conv.double_conv.1.weight"
+        },
+        "up2_n.conv.double_conv.1.bias": {
+          "__type__": "tensor",
+          "key": "model_state_dict.up2_n.conv.double_conv.1.bias"
+        },
+        "up2_n.conv.double_conv.1.running_mean": {
+          "__type__": "tensor",
+          "key": "model_state_dict.up2_n.conv.double_conv.1.running_mean"
+        },
+        "up2_n.conv.double_conv.1.running_var": {
+          "__type__": "tensor",
+          "key": "model_state_dict.up2_n.conv.double_conv.1.running_var"
+        },
+        "up2_n.conv.double_conv.1.num_batches_tracked": {
+          "__type__": "tensor",
+          "key": "model_state_dict.up2_n.conv.double_conv.1.num_batches_tracked"
+        },
+        "up2_n.conv.double_conv.3.weight": {
+          "__type__": "tensor",
+          "key": "model_state_dict.up2_n.conv.double_conv.3.weight"
+        },
+        "up2_n.conv.double_conv.4.weight": {
+          "__type__": "tensor",
+          "key": "model_state_dict.up2_n.conv.double_conv.4.weight"
+        },
+        "up2_n.conv.double_conv.4.bias": {
+          "__type__": "tensor",
+          "key": "model_state_dict.up2_n.conv.double_conv.4.bias"
+        },
+        "up2_n.conv.double_conv.4.running_mean": {
+          "__type__": "tensor",
+          "key": "model_state_dict.up2_n.conv.double_conv.4.running_mean"
+        },
+        "up2_n.conv.double_conv.4.running_var": {
+          "__type__": "tensor",
+          "key": "model_state_dict.up2_n.conv.double_conv.4.running_var"
+        },
+        "up2_n.conv.double_conv.4.num_batches_tracked": {
+          "__type__": "tensor",
+          "key": "model_state_dict.up2_n.conv.double_conv.4.num_batches_tracked"
+        },
+        "up3_n.conv.double_conv.0.weight": {
+          "__type__": "tensor",
+          "key": "model_state_dict.up3_n.conv.double_conv.0.weight"
+        },
+        "up3_n.conv.double_conv.1.weight": {
+          "__type__": "tensor",
+          "key": "model_state_dict.up3_n.conv.double_conv.1.weight"
+        },
+        "up3_n.conv.double_conv.1.bias": {
+          "__type__": "tensor",
+          "key": "model_state_dict.up3_n.conv.double_conv.1.bias"
+        },
+        "up3_n.conv.double_conv.1.running_mean": {
+          "__type__": "tensor",
+          "key": "model_state_dict.up3_n.conv.double_conv.1.running_mean"
+        },
+        "up3_n.conv.double_conv.1.running_var": {
+          "__type__": "tensor",
+          "key": "model_state_dict.up3_n.conv.double_conv.1.running_var"
+        },
+        "up3_n.conv.double_conv.1.num_batches_tracked": {
+          "__type__": "tensor",
+          "key": "model_state_dict.up3_n.conv.double_conv.1.num_batches_tracked"
+        },
+        "up3_n.conv.double_conv.3.weight": {
+          "__type__": "tensor",
+          "key": "model_state_dict.up3_n.conv.double_conv.3.weight"
+        },
+        "up3_n.conv.double_conv.4.weight": {
+          "__type__": "tensor",
+          "key": "model_state_dict.up3_n.conv.double_conv.4.weight"
+        },
+        "up3_n.conv.double_conv.4.bias": {
+          "__type__": "tensor",
+          "key": "model_state_dict.up3_n.conv.double_conv.4.bias"
+        },
+        "up3_n.conv.double_conv.4.running_mean": {
+          "__type__": "tensor",
+          "key": "model_state_dict.up3_n.conv.double_conv.4.running_mean"
+        },
+        "up3_n.conv.double_conv.4.running_var": {
+          "__type__": "tensor",
+          "key": "model_state_dict.up3_n.conv.double_conv.4.running_var"
+        },
+        "up3_n.conv.double_conv.4.num_batches_tracked": {
+          "__type__": "tensor",
+          "key": "model_state_dict.up3_n.conv.double_conv.4.num_batches_tracked"
+        },
+        "up4_n.conv.double_conv.0.weight": {
+          "__type__": "tensor",
+          "key": "model_state_dict.up4_n.conv.double_conv.0.weight"
+        },
+        "up4_n.conv.double_conv.1.weight": {
+          "__type__": "tensor",
+          "key": "model_state_dict.up4_n.conv.double_conv.1.weight"
+        },
+        "up4_n.conv.double_conv.1.bias": {
+          "__type__": "tensor",
+          "key": "model_state_dict.up4_n.conv.double_conv.1.bias"
+        },
+        "up4_n.conv.double_conv.1.running_mean": {
+          "__type__": "tensor",
+          "key": "model_state_dict.up4_n.conv.double_conv.1.running_mean"
+        },
+        "up4_n.conv.double_conv.1.running_var": {
+          "__type__": "tensor",
+          "key": "model_state_dict.up4_n.conv.double_conv.1.running_var"
+        },
+        "up4_n.conv.double_conv.1.num_batches_tracked": {
+          "__type__": "tensor",
+          "key": "model_state_dict.up4_n.conv.double_conv.1.num_batches_tracked"
+        },
+        "up4_n.conv.double_conv.3.weight": {
+          "__type__": "tensor",
+          "key": "model_state_dict.up4_n.conv.double_conv.3.weight"
+        },
+        "up4_n.conv.double_conv.4.weight": {
+          "__type__": "tensor",
+          "key": "model_state_dict.up4_n.conv.double_conv.4.weight"
+        },
+        "up4_n.conv.double_conv.4.bias": {
+          "__type__": "tensor",
+          "key": "model_state_dict.up4_n.conv.double_conv.4.bias"
+        },
+        "up4_n.conv.double_conv.4.running_mean": {
+          "__type__": "tensor",
+          "key": "model_state_dict.up4_n.conv.double_conv.4.running_mean"
+        },
+        "up4_n.conv.double_conv.4.running_var": {
+          "__type__": "tensor",
+          "key": "model_state_dict.up4_n.conv.double_conv.4.running_var"
+        },
+        "up4_n.conv.double_conv.4.num_batches_tracked": {
+          "__type__": "tensor",
+          "key": "model_state_dict.up4_n.conv.double_conv.4.num_batches_tracked"
+        },
+        "outc_n.weight": {
+          "__type__": "tensor",
+          "key": "model_state_dict.outc_n.weight"
+        },
+        "outc_n.bias": {
+          "__type__": "tensor",
+          "key": "model_state_dict.outc_n.bias"
+        }
+      }
+    },
+    "optimizer_state_dict": {
+      "__type__": "dict",
+      "items": {
+        "state": {
+          "__type__": "dict",
+          "items": {
+            "0": {
+              "__type__": "dict",
+              "items": {
+                "step": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.0.step"
+                },
+                "exp_avg": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.0.exp_avg"
+                },
+                "exp_avg_sq": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.0.exp_avg_sq"
+                }
+              }
+            },
+            "1": {
+              "__type__": "dict",
+              "items": {
+                "step": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.1.step"
+                },
+                "exp_avg": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.1.exp_avg"
+                },
+                "exp_avg_sq": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.1.exp_avg_sq"
+                }
+              }
+            },
+            "2": {
+              "__type__": "dict",
+              "items": {
+                "step": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.2.step"
+                },
+                "exp_avg": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.2.exp_avg"
+                },
+                "exp_avg_sq": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.2.exp_avg_sq"
+                }
+              }
+            },
+            "3": {
+              "__type__": "dict",
+              "items": {
+                "step": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.3.step"
+                },
+                "exp_avg": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.3.exp_avg"
+                },
+                "exp_avg_sq": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.3.exp_avg_sq"
+                }
+              }
+            },
+            "4": {
+              "__type__": "dict",
+              "items": {
+                "step": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.4.step"
+                },
+                "exp_avg": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.4.exp_avg"
+                },
+                "exp_avg_sq": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.4.exp_avg_sq"
+                }
+              }
+            },
+            "5": {
+              "__type__": "dict",
+              "items": {
+                "step": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.5.step"
+                },
+                "exp_avg": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.5.exp_avg"
+                },
+                "exp_avg_sq": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.5.exp_avg_sq"
+                }
+              }
+            },
+            "6": {
+              "__type__": "dict",
+              "items": {
+                "step": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.6.step"
+                },
+                "exp_avg": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.6.exp_avg"
+                },
+                "exp_avg_sq": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.6.exp_avg_sq"
+                }
+              }
+            },
+            "7": {
+              "__type__": "dict",
+              "items": {
+                "step": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.7.step"
+                },
+                "exp_avg": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.7.exp_avg"
+                },
+                "exp_avg_sq": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.7.exp_avg_sq"
+                }
+              }
+            },
+            "8": {
+              "__type__": "dict",
+              "items": {
+                "step": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.8.step"
+                },
+                "exp_avg": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.8.exp_avg"
+                },
+                "exp_avg_sq": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.8.exp_avg_sq"
+                }
+              }
+            },
+            "9": {
+              "__type__": "dict",
+              "items": {
+                "step": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.9.step"
+                },
+                "exp_avg": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.9.exp_avg"
+                },
+                "exp_avg_sq": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.9.exp_avg_sq"
+                }
+              }
+            },
+            "10": {
+              "__type__": "dict",
+              "items": {
+                "step": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.10.step"
+                },
+                "exp_avg": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.10.exp_avg"
+                },
+                "exp_avg_sq": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.10.exp_avg_sq"
+                }
+              }
+            },
+            "11": {
+              "__type__": "dict",
+              "items": {
+                "step": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.11.step"
+                },
+                "exp_avg": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.11.exp_avg"
+                },
+                "exp_avg_sq": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.11.exp_avg_sq"
+                }
+              }
+            },
+            "12": {
+              "__type__": "dict",
+              "items": {
+                "step": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.12.step"
+                },
+                "exp_avg": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.12.exp_avg"
+                },
+                "exp_avg_sq": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.12.exp_avg_sq"
+                }
+              }
+            },
+            "13": {
+              "__type__": "dict",
+              "items": {
+                "step": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.13.step"
+                },
+                "exp_avg": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.13.exp_avg"
+                },
+                "exp_avg_sq": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.13.exp_avg_sq"
+                }
+              }
+            },
+            "14": {
+              "__type__": "dict",
+              "items": {
+                "step": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.14.step"
+                },
+                "exp_avg": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.14.exp_avg"
+                },
+                "exp_avg_sq": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.14.exp_avg_sq"
+                }
+              }
+            },
+            "15": {
+              "__type__": "dict",
+              "items": {
+                "step": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.15.step"
+                },
+                "exp_avg": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.15.exp_avg"
+                },
+                "exp_avg_sq": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.15.exp_avg_sq"
+                }
+              }
+            },
+            "16": {
+              "__type__": "dict",
+              "items": {
+                "step": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.16.step"
+                },
+                "exp_avg": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.16.exp_avg"
+                },
+                "exp_avg_sq": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.16.exp_avg_sq"
+                }
+              }
+            },
+            "17": {
+              "__type__": "dict",
+              "items": {
+                "step": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.17.step"
+                },
+                "exp_avg": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.17.exp_avg"
+                },
+                "exp_avg_sq": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.17.exp_avg_sq"
+                }
+              }
+            },
+            "18": {
+              "__type__": "dict",
+              "items": {
+                "step": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.18.step"
+                },
+                "exp_avg": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.18.exp_avg"
+                },
+                "exp_avg_sq": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.18.exp_avg_sq"
+                }
+              }
+            },
+            "19": {
+              "__type__": "dict",
+              "items": {
+                "step": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.19.step"
+                },
+                "exp_avg": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.19.exp_avg"
+                },
+                "exp_avg_sq": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.19.exp_avg_sq"
+                }
+              }
+            },
+            "20": {
+              "__type__": "dict",
+              "items": {
+                "step": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.20.step"
+                },
+                "exp_avg": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.20.exp_avg"
+                },
+                "exp_avg_sq": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.20.exp_avg_sq"
+                }
+              }
+            },
+            "21": {
+              "__type__": "dict",
+              "items": {
+                "step": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.21.step"
+                },
+                "exp_avg": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.21.exp_avg"
+                },
+                "exp_avg_sq": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.21.exp_avg_sq"
+                }
+              }
+            },
+            "22": {
+              "__type__": "dict",
+              "items": {
+                "step": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.22.step"
+                },
+                "exp_avg": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.22.exp_avg"
+                },
+                "exp_avg_sq": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.22.exp_avg_sq"
+                }
+              }
+            },
+            "23": {
+              "__type__": "dict",
+              "items": {
+                "step": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.23.step"
+                },
+                "exp_avg": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.23.exp_avg"
+                },
+                "exp_avg_sq": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.23.exp_avg_sq"
+                }
+              }
+            },
+            "24": {
+              "__type__": "dict",
+              "items": {
+                "step": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.24.step"
+                },
+                "exp_avg": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.24.exp_avg"
+                },
+                "exp_avg_sq": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.24.exp_avg_sq"
+                }
+              }
+            },
+            "25": {
+              "__type__": "dict",
+              "items": {
+                "step": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.25.step"
+                },
+                "exp_avg": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.25.exp_avg"
+                },
+                "exp_avg_sq": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.25.exp_avg_sq"
+                }
+              }
+            },
+            "26": {
+              "__type__": "dict",
+              "items": {
+                "step": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.26.step"
+                },
+                "exp_avg": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.26.exp_avg"
+                },
+                "exp_avg_sq": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.26.exp_avg_sq"
+                }
+              }
+            },
+            "27": {
+              "__type__": "dict",
+              "items": {
+                "step": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.27.step"
+                },
+                "exp_avg": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.27.exp_avg"
+                },
+                "exp_avg_sq": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.27.exp_avg_sq"
+                }
+              }
+            },
+            "28": {
+              "__type__": "dict",
+              "items": {
+                "step": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.28.step"
+                },
+                "exp_avg": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.28.exp_avg"
+                },
+                "exp_avg_sq": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.28.exp_avg_sq"
+                }
+              }
+            },
+            "29": {
+              "__type__": "dict",
+              "items": {
+                "step": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.29.step"
+                },
+                "exp_avg": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.29.exp_avg"
+                },
+                "exp_avg_sq": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.29.exp_avg_sq"
+                }
+              }
+            },
+            "30": {
+              "__type__": "dict",
+              "items": {
+                "step": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.30.step"
+                },
+                "exp_avg": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.30.exp_avg"
+                },
+                "exp_avg_sq": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.30.exp_avg_sq"
+                }
+              }
+            },
+            "31": {
+              "__type__": "dict",
+              "items": {
+                "step": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.31.step"
+                },
+                "exp_avg": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.31.exp_avg"
+                },
+                "exp_avg_sq": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.31.exp_avg_sq"
+                }
+              }
+            },
+            "32": {
+              "__type__": "dict",
+              "items": {
+                "step": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.32.step"
+                },
+                "exp_avg": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.32.exp_avg"
+                },
+                "exp_avg_sq": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.32.exp_avg_sq"
+                }
+              }
+            },
+            "33": {
+              "__type__": "dict",
+              "items": {
+                "step": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.33.step"
+                },
+                "exp_avg": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.33.exp_avg"
+                },
+                "exp_avg_sq": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.33.exp_avg_sq"
+                }
+              }
+            },
+            "34": {
+              "__type__": "dict",
+              "items": {
+                "step": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.34.step"
+                },
+                "exp_avg": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.34.exp_avg"
+                },
+                "exp_avg_sq": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.34.exp_avg_sq"
+                }
+              }
+            },
+            "35": {
+              "__type__": "dict",
+              "items": {
+                "step": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.35.step"
+                },
+                "exp_avg": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.35.exp_avg"
+                },
+                "exp_avg_sq": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.35.exp_avg_sq"
+                }
+              }
+            },
+            "36": {
+              "__type__": "dict",
+              "items": {
+                "step": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.36.step"
+                },
+                "exp_avg": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.36.exp_avg"
+                },
+                "exp_avg_sq": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.36.exp_avg_sq"
+                }
+              }
+            },
+            "37": {
+              "__type__": "dict",
+              "items": {
+                "step": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.37.step"
+                },
+                "exp_avg": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.37.exp_avg"
+                },
+                "exp_avg_sq": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.37.exp_avg_sq"
+                }
+              }
+            },
+            "38": {
+              "__type__": "dict",
+              "items": {
+                "step": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.38.step"
+                },
+                "exp_avg": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.38.exp_avg"
+                },
+                "exp_avg_sq": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.38.exp_avg_sq"
+                }
+              }
+            },
+            "39": {
+              "__type__": "dict",
+              "items": {
+                "step": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.39.step"
+                },
+                "exp_avg": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.39.exp_avg"
+                },
+                "exp_avg_sq": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.39.exp_avg_sq"
+                }
+              }
+            },
+            "40": {
+              "__type__": "dict",
+              "items": {
+                "step": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.40.step"
+                },
+                "exp_avg": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.40.exp_avg"
+                },
+                "exp_avg_sq": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.40.exp_avg_sq"
+                }
+              }
+            },
+            "41": {
+              "__type__": "dict",
+              "items": {
+                "step": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.41.step"
+                },
+                "exp_avg": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.41.exp_avg"
+                },
+                "exp_avg_sq": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.41.exp_avg_sq"
+                }
+              }
+            },
+            "42": {
+              "__type__": "dict",
+              "items": {
+                "step": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.42.step"
+                },
+                "exp_avg": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.42.exp_avg"
+                },
+                "exp_avg_sq": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.42.exp_avg_sq"
+                }
+              }
+            },
+            "43": {
+              "__type__": "dict",
+              "items": {
+                "step": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.43.step"
+                },
+                "exp_avg": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.43.exp_avg"
+                },
+                "exp_avg_sq": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.43.exp_avg_sq"
+                }
+              }
+            },
+            "44": {
+              "__type__": "dict",
+              "items": {
+                "step": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.44.step"
+                },
+                "exp_avg": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.44.exp_avg"
+                },
+                "exp_avg_sq": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.44.exp_avg_sq"
+                }
+              }
+            },
+            "45": {
+              "__type__": "dict",
+              "items": {
+                "step": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.45.step"
+                },
+                "exp_avg": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.45.exp_avg"
+                },
+                "exp_avg_sq": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.45.exp_avg_sq"
+                }
+              }
+            },
+            "46": {
+              "__type__": "dict",
+              "items": {
+                "step": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.46.step"
+                },
+                "exp_avg": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.46.exp_avg"
+                },
+                "exp_avg_sq": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.46.exp_avg_sq"
+                }
+              }
+            },
+            "47": {
+              "__type__": "dict",
+              "items": {
+                "step": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.47.step"
+                },
+                "exp_avg": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.47.exp_avg"
+                },
+                "exp_avg_sq": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.47.exp_avg_sq"
+                }
+              }
+            },
+            "48": {
+              "__type__": "dict",
+              "items": {
+                "step": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.48.step"
+                },
+                "exp_avg": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.48.exp_avg"
+                },
+                "exp_avg_sq": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.48.exp_avg_sq"
+                }
+              }
+            },
+            "49": {
+              "__type__": "dict",
+              "items": {
+                "step": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.49.step"
+                },
+                "exp_avg": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.49.exp_avg"
+                },
+                "exp_avg_sq": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.49.exp_avg_sq"
+                }
+              }
+            },
+            "50": {
+              "__type__": "dict",
+              "items": {
+                "step": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.50.step"
+                },
+                "exp_avg": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.50.exp_avg"
+                },
+                "exp_avg_sq": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.50.exp_avg_sq"
+                }
+              }
+            },
+            "51": {
+              "__type__": "dict",
+              "items": {
+                "step": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.51.step"
+                },
+                "exp_avg": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.51.exp_avg"
+                },
+                "exp_avg_sq": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.51.exp_avg_sq"
+                }
+              }
+            },
+            "52": {
+              "__type__": "dict",
+              "items": {
+                "step": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.52.step"
+                },
+                "exp_avg": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.52.exp_avg"
+                },
+                "exp_avg_sq": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.52.exp_avg_sq"
+                }
+              }
+            },
+            "53": {
+              "__type__": "dict",
+              "items": {
+                "step": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.53.step"
+                },
+                "exp_avg": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.53.exp_avg"
+                },
+                "exp_avg_sq": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.53.exp_avg_sq"
+                }
+              }
+            },
+            "54": {
+              "__type__": "dict",
+              "items": {
+                "step": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.54.step"
+                },
+                "exp_avg": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.54.exp_avg"
+                },
+                "exp_avg_sq": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.54.exp_avg_sq"
+                }
+              }
+            },
+            "55": {
+              "__type__": "dict",
+              "items": {
+                "step": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.55.step"
+                },
+                "exp_avg": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.55.exp_avg"
+                },
+                "exp_avg_sq": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.55.exp_avg_sq"
+                }
+              }
+            },
+            "56": {
+              "__type__": "dict",
+              "items": {
+                "step": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.56.step"
+                },
+                "exp_avg": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.56.exp_avg"
+                },
+                "exp_avg_sq": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.56.exp_avg_sq"
+                }
+              }
+            },
+            "57": {
+              "__type__": "dict",
+              "items": {
+                "step": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.57.step"
+                },
+                "exp_avg": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.57.exp_avg"
+                },
+                "exp_avg_sq": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.57.exp_avg_sq"
+                }
+              }
+            },
+            "58": {
+              "__type__": "dict",
+              "items": {
+                "step": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.58.step"
+                },
+                "exp_avg": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.58.exp_avg"
+                },
+                "exp_avg_sq": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.58.exp_avg_sq"
+                }
+              }
+            },
+            "59": {
+              "__type__": "dict",
+              "items": {
+                "step": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.59.step"
+                },
+                "exp_avg": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.59.exp_avg"
+                },
+                "exp_avg_sq": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.59.exp_avg_sq"
+                }
+              }
+            },
+            "60": {
+              "__type__": "dict",
+              "items": {
+                "step": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.60.step"
+                },
+                "exp_avg": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.60.exp_avg"
+                },
+                "exp_avg_sq": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.60.exp_avg_sq"
+                }
+              }
+            },
+            "61": {
+              "__type__": "dict",
+              "items": {
+                "step": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.61.step"
+                },
+                "exp_avg": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.61.exp_avg"
+                },
+                "exp_avg_sq": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.61.exp_avg_sq"
+                }
+              }
+            },
+            "62": {
+              "__type__": "dict",
+              "items": {
+                "step": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.62.step"
+                },
+                "exp_avg": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.62.exp_avg"
+                },
+                "exp_avg_sq": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.62.exp_avg_sq"
+                }
+              }
+            },
+            "63": {
+              "__type__": "dict",
+              "items": {
+                "step": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.63.step"
+                },
+                "exp_avg": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.63.exp_avg"
+                },
+                "exp_avg_sq": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.63.exp_avg_sq"
+                }
+              }
+            },
+            "64": {
+              "__type__": "dict",
+              "items": {
+                "step": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.64.step"
+                },
+                "exp_avg": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.64.exp_avg"
+                },
+                "exp_avg_sq": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.64.exp_avg_sq"
+                }
+              }
+            },
+            "65": {
+              "__type__": "dict",
+              "items": {
+                "step": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.65.step"
+                },
+                "exp_avg": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.65.exp_avg"
+                },
+                "exp_avg_sq": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.65.exp_avg_sq"
+                }
+              }
+            },
+            "66": {
+              "__type__": "dict",
+              "items": {
+                "step": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.66.step"
+                },
+                "exp_avg": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.66.exp_avg"
+                },
+                "exp_avg_sq": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.66.exp_avg_sq"
+                }
+              }
+            },
+            "67": {
+              "__type__": "dict",
+              "items": {
+                "step": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.67.step"
+                },
+                "exp_avg": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.67.exp_avg"
+                },
+                "exp_avg_sq": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.67.exp_avg_sq"
+                }
+              }
+            },
+            "68": {
+              "__type__": "dict",
+              "items": {
+                "step": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.68.step"
+                },
+                "exp_avg": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.68.exp_avg"
+                },
+                "exp_avg_sq": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.68.exp_avg_sq"
+                }
+              }
+            },
+            "69": {
+              "__type__": "dict",
+              "items": {
+                "step": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.69.step"
+                },
+                "exp_avg": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.69.exp_avg"
+                },
+                "exp_avg_sq": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.69.exp_avg_sq"
+                }
+              }
+            },
+            "70": {
+              "__type__": "dict",
+              "items": {
+                "step": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.70.step"
+                },
+                "exp_avg": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.70.exp_avg"
+                },
+                "exp_avg_sq": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.70.exp_avg_sq"
+                }
+              }
+            },
+            "71": {
+              "__type__": "dict",
+              "items": {
+                "step": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.71.step"
+                },
+                "exp_avg": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.71.exp_avg"
+                },
+                "exp_avg_sq": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.71.exp_avg_sq"
+                }
+              }
+            },
+            "72": {
+              "__type__": "dict",
+              "items": {
+                "step": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.72.step"
+                },
+                "exp_avg": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.72.exp_avg"
+                },
+                "exp_avg_sq": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.72.exp_avg_sq"
+                }
+              }
+            },
+            "73": {
+              "__type__": "dict",
+              "items": {
+                "step": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.73.step"
+                },
+                "exp_avg": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.73.exp_avg"
+                },
+                "exp_avg_sq": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.73.exp_avg_sq"
+                }
+              }
+            },
+            "74": {
+              "__type__": "dict",
+              "items": {
+                "step": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.74.step"
+                },
+                "exp_avg": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.74.exp_avg"
+                },
+                "exp_avg_sq": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.74.exp_avg_sq"
+                }
+              }
+            },
+            "75": {
+              "__type__": "dict",
+              "items": {
+                "step": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.75.step"
+                },
+                "exp_avg": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.75.exp_avg"
+                },
+                "exp_avg_sq": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.75.exp_avg_sq"
+                }
+              }
+            },
+            "76": {
+              "__type__": "dict",
+              "items": {
+                "step": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.76.step"
+                },
+                "exp_avg": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.76.exp_avg"
+                },
+                "exp_avg_sq": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.76.exp_avg_sq"
+                }
+              }
+            },
+            "77": {
+              "__type__": "dict",
+              "items": {
+                "step": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.77.step"
+                },
+                "exp_avg": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.77.exp_avg"
+                },
+                "exp_avg_sq": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.77.exp_avg_sq"
+                }
+              }
+            },
+            "78": {
+              "__type__": "dict",
+              "items": {
+                "step": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.78.step"
+                },
+                "exp_avg": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.78.exp_avg"
+                },
+                "exp_avg_sq": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.78.exp_avg_sq"
+                }
+              }
+            },
+            "79": {
+              "__type__": "dict",
+              "items": {
+                "step": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.79.step"
+                },
+                "exp_avg": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.79.exp_avg"
+                },
+                "exp_avg_sq": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.79.exp_avg_sq"
+                }
+              }
+            },
+            "80": {
+              "__type__": "dict",
+              "items": {
+                "step": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.80.step"
+                },
+                "exp_avg": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.80.exp_avg"
+                },
+                "exp_avg_sq": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.80.exp_avg_sq"
+                }
+              }
+            },
+            "81": {
+              "__type__": "dict",
+              "items": {
+                "step": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.81.step"
+                },
+                "exp_avg": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.81.exp_avg"
+                },
+                "exp_avg_sq": {
+                  "__type__": "tensor",
+                  "key": "optimizer_state_dict.state.81.exp_avg_sq"
+                }
+              }
+            }
+          }
+        },
+        "param_groups": {
+          "__type__": "list",
+          "items": [
+            {
+              "__type__": "dict",
+              "items": {
+                "lr": {
+                  "__type__": "scalar",
+                  "value": 1.220703125e-08
+                },
+                "betas": {
+                  "__type__": "list",
+                  "items": [
+                    {
+                      "__type__": "scalar",
+                      "value": 0.9
+                    },
+                    {
+                      "__type__": "scalar",
+                      "value": 0.999
+                    }
+                  ]
+                },
+                "eps": {
+                  "__type__": "scalar",
+                  "value": 1e-08
+                },
+                "weight_decay": {
+                  "__type__": "scalar",
+                  "value": 0.01
+                },
+                "amsgrad": {
+                  "__type__": "scalar",
+                  "value": false
+                },
+                "maximize": {
+                  "__type__": "scalar",
+                  "value": false
+                },
+                "foreach": {
+                  "__type__": "scalar",
+                  "value": null
+                },
+                "capturable": {
+                  "__type__": "scalar",
+                  "value": false
+                },
+                "differentiable": {
+                  "__type__": "scalar",
+                  "value": false
+                },
+                "fused": {
+                  "__type__": "scalar",
+                  "value": null
+                },
+                "decoupled_weight_decay": {
+                  "__type__": "scalar",
+                  "value": true
+                },
+                "params": {
+                  "__type__": "list",
+                  "items": [
+                    {
+                      "__type__": "scalar",
+                      "value": 0
+                    },
+                    {
+                      "__type__": "scalar",
+                      "value": 1
+                    },
+                    {
+                      "__type__": "scalar",
+                      "value": 2
+                    },
+                    {
+                      "__type__": "scalar",
+                      "value": 3
+                    },
+                    {
+                      "__type__": "scalar",
+                      "value": 4
+                    },
+                    {
+                      "__type__": "scalar",
+                      "value": 5
+                    },
+                    {
+                      "__type__": "scalar",
+                      "value": 6
+                    },
+                    {
+                      "__type__": "scalar",
+                      "value": 7
+                    },
+                    {
+                      "__type__": "scalar",
+                      "value": 8
+                    },
+                    {
+                      "__type__": "scalar",
+                      "value": 9
+                    },
+                    {
+                      "__type__": "scalar",
+                      "value": 10
+                    },
+                    {
+                      "__type__": "scalar",
+                      "value": 11
+                    },
+                    {
+                      "__type__": "scalar",
+                      "value": 12
+                    },
+                    {
+                      "__type__": "scalar",
+                      "value": 13
+                    },
+                    {
+                      "__type__": "scalar",
+                      "value": 14
+                    },
+                    {
+                      "__type__": "scalar",
+                      "value": 15
+                    },
+                    {
+                      "__type__": "scalar",
+                      "value": 16
+                    },
+                    {
+                      "__type__": "scalar",
+                      "value": 17
+                    },
+                    {
+                      "__type__": "scalar",
+                      "value": 18
+                    },
+                    {
+                      "__type__": "scalar",
+                      "value": 19
+                    },
+                    {
+                      "__type__": "scalar",
+                      "value": 20
+                    },
+                    {
+                      "__type__": "scalar",
+                      "value": 21
+                    },
+                    {
+                      "__type__": "scalar",
+                      "value": 22
+                    },
+                    {
+                      "__type__": "scalar",
+                      "value": 23
+                    },
+                    {
+                      "__type__": "scalar",
+                      "value": 24
+                    },
+                    {
+                      "__type__": "scalar",
+                      "value": 25
+                    },
+                    {
+                      "__type__": "scalar",
+                      "value": 26
+                    },
+                    {
+                      "__type__": "scalar",
+                      "value": 27
+                    },
+                    {
+                      "__type__": "scalar",
+                      "value": 28
+                    },
+                    {
+                      "__type__": "scalar",
+                      "value": 29
+                    },
+                    {
+                      "__type__": "scalar",
+                      "value": 30
+                    },
+                    {
+                      "__type__": "scalar",
+                      "value": 31
+                    },
+                    {
+                      "__type__": "scalar",
+                      "value": 32
+                    },
+                    {
+                      "__type__": "scalar",
+                      "value": 33
+                    },
+                    {
+                      "__type__": "scalar",
+                      "value": 34
+                    },
+                    {
+                      "__type__": "scalar",
+                      "value": 35
+                    },
+                    {
+                      "__type__": "scalar",
+                      "value": 36
+                    },
+                    {
+                      "__type__": "scalar",
+                      "value": 37
+                    },
+                    {
+                      "__type__": "scalar",
+                      "value": 38
+                    },
+                    {
+                      "__type__": "scalar",
+                      "value": 39
+                    },
+                    {
+                      "__type__": "scalar",
+                      "value": 40
+                    },
+                    {
+                      "__type__": "scalar",
+                      "value": 41
+                    },
+                    {
+                      "__type__": "scalar",
+                      "value": 42
+                    },
+                    {
+                      "__type__": "scalar",
+                      "value": 43
+                    },
+                    {
+                      "__type__": "scalar",
+                      "value": 44
+                    },
+                    {
+                      "__type__": "scalar",
+                      "value": 45
+                    },
+                    {
+                      "__type__": "scalar",
+                      "value": 46
+                    },
+                    {
+                      "__type__": "scalar",
+                      "value": 47
+                    },
+                    {
+                      "__type__": "scalar",
+                      "value": 48
+                    },
+                    {
+                      "__type__": "scalar",
+                      "value": 49
+                    },
+                    {
+                      "__type__": "scalar",
+                      "value": 50
+                    },
+                    {
+                      "__type__": "scalar",
+                      "value": 51
+                    },
+                    {
+                      "__type__": "scalar",
+                      "value": 52
+                    },
+                    {
+                      "__type__": "scalar",
+                      "value": 53
+                    },
+                    {
+                      "__type__": "scalar",
+                      "value": 54
+                    },
+                    {
+                      "__type__": "scalar",
+                      "value": 55
+                    },
+                    {
+                      "__type__": "scalar",
+                      "value": 56
+                    },
+                    {
+                      "__type__": "scalar",
+                      "value": 57
+                    },
+                    {
+                      "__type__": "scalar",
+                      "value": 58
+                    },
+                    {
+                      "__type__": "scalar",
+                      "value": 59
+                    },
+                    {
+                      "__type__": "scalar",
+                      "value": 60
+                    },
+                    {
+                      "__type__": "scalar",
+                      "value": 61
+                    },
+                    {
+                      "__type__": "scalar",
+                      "value": 62
+                    },
+                    {
+                      "__type__": "scalar",
+                      "value": 63
+                    },
+                    {
+                      "__type__": "scalar",
+                      "value": 64
+                    },
+                    {
+                      "__type__": "scalar",
+                      "value": 65
+                    },
+                    {
+                      "__type__": "scalar",
+                      "value": 66
+                    },
+                    {
+                      "__type__": "scalar",
+                      "value": 67
+                    },
+                    {
+                      "__type__": "scalar",
+                      "value": 68
+                    },
+                    {
+                      "__type__": "scalar",
+                      "value": 69
+                    },
+                    {
+                      "__type__": "scalar",
+                      "value": 70
+                    },
+                    {
+                      "__type__": "scalar",
+                      "value": 71
+                    },
+                    {
+                      "__type__": "scalar",
+                      "value": 72
+                    },
+                    {
+                      "__type__": "scalar",
+                      "value": 73
+                    },
+                    {
+                      "__type__": "scalar",
+                      "value": 74
+                    },
+                    {
+                      "__type__": "scalar",
+                      "value": 75
+                    },
+                    {
+                      "__type__": "scalar",
+                      "value": 76
+                    },
+                    {
+                      "__type__": "scalar",
+                      "value": 77
+                    },
+                    {
+                      "__type__": "scalar",
+                      "value": 78
+                    },
+                    {
+                      "__type__": "scalar",
+                      "value": 79
+                    },
+                    {
+                      "__type__": "scalar",
+                      "value": 80
+                    },
+                    {
+                      "__type__": "scalar",
+                      "value": 81
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    "val_iou": {
+      "__type__": "scalar",
+      "value": 0.24932549036675636
+    },
+    "val_loss": {
+      "__type__": "scalar",
+      "value": 1.0592346887552102
+    },
+    "args": {
+      "__type__": "dict",
+      "items": {
+        "shard": {
+          "__type__": "scalar",
+          "value": "/scratch-jpl/osse-toolkit/dmartinez/biomass-crevasse-unet/data/train_biomass_frangi_v1.npz"
+        },
+        "channels": {
+          "__type__": "scalar",
+          "value": "HH,HV,VH,VV"
+        },
+        "epochs": {
+          "__type__": "scalar",
+          "value": 200
+        },
+        "batch_size": {
+          "__type__": "scalar",
+          "value": 8
+        },
+        "lr": {
+          "__type__": "scalar",
+          "value": 0.0001
+        },
+        "lr_factor": {
+          "__type__": "scalar",
+          "value": 0.5
+        },
+        "lr_patience": {
+          "__type__": "scalar",
+          "value": 5
+        },
+        "base_channels": {
+          "__type__": "scalar",
+          "value": 64
+        },
+        "bce_weight": {
+          "__type__": "scalar",
+          "value": 1.0
+        },
+        "dice_weight": {
+          "__type__": "scalar",
+          "value": 1.0
+        },
+        "consistency_weight": {
+          "__type__": "scalar",
+          "value": 0.1
+        },
+        "pred_thresh": {
+          "__type__": "scalar",
+          "value": 0.25
+        },
+        "target_thresh": {
+          "__type__": "scalar",
+          "value": null
+        },
+        "resume": {
+          "__type__": "scalar",
+          "value": "/scratch-jpl/osse-toolkit/dmartinez/biomass-crevasse-unet/models/bio_unet_4ch_frangi_aux_nw0p02/unet_last.pth"
+        },
+        "aux_noise_branch": {
+          "__type__": "scalar",
+          "value": true
+        },
+        "noise_weight": {
+          "__type__": "scalar",
+          "value": 0.02
+        },
+        "val_frac": {
+          "__type__": "scalar",
+          "value": 0.2
+        },
+        "block_tiles": {
+          "__type__": "scalar",
+          "value": 32
+        },
+        "buffer_tiles": {
+          "__type__": "scalar",
+          "value": 16
+        },
+        "split_seed": {
+          "__type__": "scalar",
+          "value": 42
+        },
+        "output_dir": {
+          "__type__": "scalar",
+          "value": "models/bio_unet_4ch_frangi_aux_nw0p02"
+        },
+        "num_workers": {
+          "__type__": "scalar",
+          "value": 31
+        }
+      }
+    },
+    "channels": {
+      "__type__": "list",
+      "items": [
+        {
+          "__type__": "scalar",
+          "value": "HH"
+        },
+        {
+          "__type__": "scalar",
+          "value": "HV"
+        },
+        {
+          "__type__": "scalar",
+          "value": "VH"
+        },
+        {
+          "__type__": "scalar",
+          "value": "VV"
+        }
+      ]
+    },
+    "mu": {
+      "__type__": "scalar",
+      "value": -15.553032451792998
+    },
+    "sd": {
+      "__type__": "scalar",
+      "value": 9.60417721365791
+    },
+    "aux_decoder": {
+      "__type__": "scalar",
+      "value": true
+    }
+  }
+}

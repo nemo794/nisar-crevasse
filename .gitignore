@@ -1,13 +1,12 @@
-# NISAR granules -- ~10 GB each, see docs/DATA.md
-data/nisar/*.tif
-data/nisar/*.h5
-
-# inference output
-data/maps/
-
-# retrained bundles (the shipped one is data/gate_5m_freqA_2gran.joblib and IS tracked)
-data/gate_retrained*.joblib
+# Not shipped in this repo at all -- granules, tile labels, training shards, feature
+# caches. Too heavy to distribute (one sensor's U-Net shards alone were 24 GB). See
+# README.md's "Building the training data from raw input swaths" for how to regenerate
+# this directory locally; it's ignored here rather than partially tracked.
+data/
 
 __pycache__/
 *.pyc
 .DS_Store
+.pytest_cache/
+*.egg-info/
+build/

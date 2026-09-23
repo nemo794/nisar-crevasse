@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "crevasse"
+version = "0.1.0"
+description = "Crevasse detection for NISAR and BIOMASS SAR"
+requires-python = ">=3.11"
+
+[project.scripts]
+crevasse-run-granule = "crevasse.cli:run_granule"
+crevasse-export-geotiff = "crevasse.cli:export_geotiff"
+crevasse-plot-granule = "crevasse.cli:plot_granule"
+
+[tool.setuptools.packages.find]
+where = ["src"]

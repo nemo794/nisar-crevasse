@@ -1,0 +1,33 @@
+# The CNN gate: everything in environment.yml plus PyTorch. A SECOND env, not an addition
+# to the first.
+#
+#   conda env create -f environment-cnn.yml
+#   conda activate biomass-gate-cnn
+#
+# WHY TWO ENVIRONMENTS
+# --------------------
+# The sibling NISAR repo holds "no torch anywhere" as an invariant, enforced by `import torch`
+# failing in its env. That invariant cannot survive here, because the better of the two BIOMASS
+# gates is a CNN. Rather than drop the invariant and lose the guarantee, it is narrowed: the
+# RF path still runs in a torch-free env, and the boundary between the two is testable.
+#
+#   conda run -n biomass-gate     python -c "import torch"   -> must FAIL
+#   conda run -n biomass-gate-cnn python -c "import torch"    -> must succeed
+#
+# If the RF path ever needs this env to run, something has leaked; find it rather than merging
+# the two files.
+#
+# Trained on Apple MPS. cpu works and is what the pinned controls use; cuda is untested here.
+name: biomass-gate-cnn
+channels:
+  - conda-forge
+  - pytorch
+dependencies:
+  - python=3.11
+  - numpy
+  - rasterio
+  - scikit-learn        # still needed: the CNN script scores the RF and (x,y) control arms
+  - joblib
+  - matplotlib
+  - pytorch             # 4-pol CNN gate only
+  - safetensors         # checkpoint I/O (src/ckpt_io.py) -- no pickle at load time
