@@ -20,9 +20,33 @@ grid and keeping only each tile's CENTER region removes it: every output pixel t
 always comes from a tile placement where it was NOT near that tile's own edge, except
 at the true boundary of the scanned area itself, where there's no neighboring tile to
 cover the trimmed strip and the full edge is kept instead.
+
+`prefill_nan`: GDAL fills a GeoTIFF block a driver never wrote with 0 by default, not
+the declared NaN nodata -- confirmed 2026-09-23 in QGIS on a full, uncropped BIOMASS
+export as a solid black ring (0, drawn under the default stretch) between the true
+NaN-nodata ring (white) and the real scanned footprint. `export_geotiff.py` writes NaN
+for every position it visits, scored or dropped, but never visits the area outside the
+scanned swath at all, so that area was left at GDAL's 0 default. `prefill_nan` closes
+that gap by writing NaN across the ENTIRE output extent once, up front, before any real
+or per-position NaN write -- so every block gets written at least once regardless of
+whether a later step ever revisits it. Streamed in row-strips so it stays memory-bounded
+on a full-size granule.
 """
+import numpy as np
 from rasterio.windows import Window
 from rasterio.windows import transform as window_transform
+
+
+def prefill_nan(dst, chunk_rows=2048):
+    """Write NaN across `dst`'s entire extent, `chunk_rows` rows at a time. Call this
+    right after opening an output dataset and before any other write, so every block is
+    guaranteed to have been written at least once -- see the module docstring."""
+    row = 0
+    while row < dst.height:
+        h = min(chunk_rows, dst.height - row)
+        block = np.full((h, dst.width), np.nan, dtype=np.float32)
+        dst.write(block, 1, window=Window(0, row, dst.width, h))
+        row += h
 
 
 def crop_window(positions, step, src_width, src_height):
@@ -41,32 +65,6 @@ def crop_window(positions, step, src_width, src_height):
 def crop_transform(window, src_transform):
     """The transform for `window`'s sub-raster, keeping the source's pixel size/CRS."""
     return window_transform(window, src_transform)
-
-
-def grid_gap_positions(positions, step, window):
-    """Every `step`-aligned (row, col) -- same coordinate space as `positions` -- inside
-    `window` that is NOT already in `positions`. These are grid cells the coarse prescan
-    or `--max-tiles` cutoff skipped entirely: within the crop, they'd otherwise silently
-    read back as GDAL's default-filled `0` instead of an honest NaN.
-
-    `window` is `crop_window(positions, ...)`'s output, so `window.row_off`/`col_off`
-    already equal some real candidate's row/col -- a legitimate point on the tile grid.
-    The grid is NOT necessarily anchored at pixel (0, 0) (a swath's valid-data bounds can
-    start at an arbitrary offset), so walking forward from `window.row_off`/`col_off`
-    themselves -- not from the nearest multiple of `step` from absolute zero, which can
-    land strictly outside the true grid -- is what keeps every generated cell on it.
-    """
-    have = set(positions)
-    out = []
-    r = window.row_off
-    while r < window.row_off + window.height:
-        c = window.col_off
-        while c < window.col_off + window.width:
-            if (r, c) not in have:
-                out.append((r, c))
-            c += step
-        r += step
-    return out
 
 
 def overlap_positions(row_min, row_max, col_min, col_max, stride):

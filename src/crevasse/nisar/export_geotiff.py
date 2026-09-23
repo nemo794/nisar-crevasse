@@ -21,13 +21,11 @@ change, not a two-step "plain GeoTIFF then translate" pipeline.
     gate_prob.tif   each tile's SCALAR gate probability, broadcast flat over its whole
                     step x step footprint (the gate has no notion of "where inside the
                     tile"). NaN for tiles `read_amp` dropped (<50% valid) but still
-                    inside the scanned swath; left at GDAL's default fill (typically 0,
-                    NOT NaN -- see "Known limitation" below) outside the scanned swath
-                    entirely, since nothing in this script ever touches that area.
+                    inside the scanned swath, and for everywhere outside the scanned
+                    swath entirely (see "NaN prefill" below).
     unet_prob.tif   the U-Net's real per-pixel probability, written only for tiles the
-                    gate flagged. NaN everywhere else within the scanned swath (gate
-                    said no, or `read_amp` dropped it); same GDAL-default caveat outside
-                    the swath as `gate_prob.tif`.
+                    gate flagged. NaN everywhere else: within the scanned swath (gate
+                    said no, or `read_amp` dropped it) and outside it.
 
 Streams tile-by-tile via windowed writes -- nothing in this script holds more than
 `--batch-size` tiles in memory at once, so it runs on a laptop regardless of granule
@@ -39,18 +37,20 @@ machine and how many tiles the gate flags. Use --max-tiles for a quick correctne
 (a handful of tiles, seconds) before ever starting a full run. `UNetSegmenter` picks up
 CUDA automatically if it's there, so a GPU machine is the real fix, not a smaller batch.
 
-Known limitation: unwritten GeoTIFF blocks are not guaranteed to read back as the
-declared NaN nodata value -- GDAL fills a block a driver never wrote with 0 by default.
-This script explicitly writes NaN for every candidate position it visits (scored or
-dropped), so the only genuinely ambiguous area is outside the scanned swath entirely,
-which this script never visits. A reader should still treat 0 there the same as NaN.
+NaN prefill: unwritten GeoTIFF blocks are not guaranteed to read back as the declared
+NaN nodata value -- GDAL fills a block a driver never wrote with 0 by default, which
+QGIS (and most viewers) render as solid black rather than the white it uses for real
+NaN nodata -- confirmed 2026-09-23 on a full, uncropped BIOMASS export as a black ring
+outside the white NaN ring around the scanned footprint; the same applies here. Both
+outputs are prefilled with NaN across their ENTIRE extent right after creation
+(`geotiff_crop.prefill_nan`), before any real or per-position write, so no block is ever
+left at GDAL's 0 default -- the area outside the scanned swath reads back as genuine
+NaN, same as a dropped tile.
 
-`--crop-to-scanned` closes that gap instead of just documenting it: the output shrinks
-to the bounding box of the positions actually processed this run (still on the source
-grid, so it opens lined up the same way, just over a smaller extent), and every
-step-aligned grid cell inside that box that was never a candidate at all also gets an
-explicit NaN write. Off by default -- the full-source-extent output stays available for
-callers that need exact pixel alignment with the untouched source raster.
+`--crop-to-scanned` shrinks the output to the bounding box of the positions actually
+processed this run (still on the source grid, so it opens lined up the same way, just
+over a smaller extent). Off by default -- the full-source-extent output stays available
+for callers that need exact pixel alignment with the untouched source raster.
 
 `--edge-margin` fixes a real, separate artifact: independent non-overlapping tile
 inference scores each tile with no context beyond its own edge, which shows up as a
@@ -73,7 +73,7 @@ from rasterio.windows import Window
 import crevasse.nisar.train_gate_classifier as T
 from crevasse.nisar.find_data_swath import find_data_bounds, get_valid_tile_positions
 from crevasse.nisar.pipeline_predict import CrevassePipeline
-from crevasse.common.geotiff_crop import (crop_window, crop_transform, grid_gap_positions,
+from crevasse.common.geotiff_crop import (crop_window, crop_transform, prefill_nan,
                                            overlap_positions, center_crop)
 
 
@@ -129,18 +129,14 @@ def export_geotiffs(granule_path, out_dir, max_tiles=None, batch_size=16,
               f"step={step} native px")
 
         row_off = col_off = 0
-        gap_positions = []
         if crop_to_scanned:
             win = crop_window(positions, step, src.width, src.height)
             row_off, col_off = win.row_off, win.col_off
             profile = profile.copy()
             profile.update(width=win.width, height=win.height,
                             transform=crop_transform(win, src.transform))
-            gap_positions = grid_gap_positions(positions, step, win)
             print(f"Cropped to the scanned area: {win.width}x{win.height} px "
-                  f"(was {src.width}x{src.height}); {len(gap_positions)} "
-                  f"never-candidate grid cells inside that box will get an explicit "
-                  f"NaN write")
+                  f"(was {src.width}x{src.height})")
 
         gate_path = out_dir / "gate_prob.tif"
         unet_path = out_dir / "unet_prob.tif"
@@ -161,6 +157,9 @@ def export_geotiffs(granule_path, out_dir, max_tiles=None, batch_size=16,
         n_scored = n_flagged = n_dropped = 0
         with _new_output(gate_path, profile, step) as dst_gate, \
              _new_output(unet_path, profile, step) as dst_unet:
+
+            prefill_nan(dst_gate)
+            prefill_nan(dst_unet)
 
             for b0 in range(0, len(positions), batch_size):
                 batch_pos = positions[b0:b0 + batch_size]
@@ -206,14 +205,6 @@ def export_geotiffs(granule_path, out_dir, max_tiles=None, batch_size=16,
                       f"({n_scored} scored, {n_flagged} flagged, {n_dropped} dropped)",
                       end="\r")
 
-            for row, col in gap_positions:
-                gw = Window(col - col_off, row - row_off,
-                            min(step, col_off + profile["width"] - col),
-                            min(step, row_off + profile["height"] - row))
-                nan_block = np.full((gw.height, gw.width), np.nan, dtype=np.float32)
-                dst_gate.write(nan_block, 1, window=gw)
-                dst_unet.write(nan_block, 1, window=gw)
-
             dst_gate.stats(approx=False)
             dst_unet.stats(approx=False)
 
@@ -243,8 +234,7 @@ def main(argv=None):
     p.add_argument("--crop-to-scanned", action="store_true",
                    help="Shrink the output to the bounding box of the positions actually "
                         "processed this run (still on the source grid) instead of the "
-                        "full swath extent, and write explicit NaN for every "
-                        "never-a-candidate grid cell inside that box. Off by default.")
+                        "full swath extent. Off by default.")
     p.add_argument("--edge-margin", type=int, default=0,
                    help="Rescore on an overlapping, (step - 2*N)-pixel-stride grid and "
                         "keep only each tile's center region, removing the faint "
