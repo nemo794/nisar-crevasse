@@ -18,12 +18,14 @@ Reading straight from each candidate's actual `rasterio.windows.Window` sidestep
 by construction, and needs only the Bedmap3 mask itself -- no ITS_LIVE velocity raster,
 no separate continent-wide grid-building step.
 
-Bedmap3 is available from NERC BAS; this repo does not ship it or a precomputed context
-grid (removed along with the rest of `data/` for being too heavy to distribute -- see
-the top-level README's "Building the training data from raw input swaths"). Point
-`--bedmap-mask` at your own copy.
+Bedmap3 is available from NERC BAS. A copy small enough to ship (~1MB, the class mask
+only -- no ITS_LIVE velocity, no continent-wide precomputed grid) lives at
+`models/bedmap3_mask.tif` and is used as `--bedmap-mask`'s default when the flag is
+passed with no value of its own (`nargs="?"` in each CLI); passing `--bedmap-mask
+/some/path` overrides it, and omitting the flag entirely disables grounded filtering.
 """
 from contextlib import contextmanager
+from pathlib import Path
 
 import numpy as np
 import rasterio
@@ -33,6 +35,8 @@ from rasterio.windows import Window
 
 GROUNDED = 1  # Bedmap3 class 1. Nodata (-9999) is filled to 0 (ocean), same convention
               # as build_context_masks.py -- unmapped is treated as not-grounded.
+
+DEFAULT_BEDMAP_MASK = str(Path(__file__).resolve().parents[3] / "models" / "bedmap3_mask.tif")
 
 
 @contextmanager

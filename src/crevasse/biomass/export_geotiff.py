@@ -69,8 +69,9 @@ scoring whose Bedmap3 grounded-ice fraction is below the given cut -- e.g. `0.7`
 only tiles that are at least 70% grounded ice, discarding floating-shelf/sea-ice/rock/
 ocean tiles up front rather than letting the gate see and score them. See
 `crevasse.common.grounded_filter` for why this reads each tile's own real pixel window
-rather than a separate precomputed context grid. Off by default -- Bedmap3 is not
-shipped in this repo, so both flags are required together and there is no default path.
+rather than a separate precomputed context grid. Off by default: pass `--bedmap-mask`
+with no value to use the bundled `models/bedmap3_mask.tif`, a path to use your own, or
+omit it entirely to skip grounded filtering. Both flags are required together.
 """
 import argparse
 from pathlib import Path
@@ -83,7 +84,7 @@ from crevasse.biomass.pipeline_predict import BiomassCrevassePipeline
 from crevasse.biomass.run_granule import _granule_paths, _coarse_valid_frac, POLS, T
 from crevasse.common.geotiff_crop import (crop_window, crop_transform, prefill_nan,
                                            overlap_positions, center_crop)
-from crevasse.common.grounded_filter import grounded_vrt, filter_grounded
+from crevasse.common.grounded_filter import grounded_vrt, filter_grounded, DEFAULT_BEDMAP_MASK
 
 
 def _new_output(path, profile, step):
@@ -284,10 +285,12 @@ def main(argv=None):
                         "inference leaves along every tile boundary. Costs roughly "
                         "(512/(512-2*N))^2 times more U-Net forward passes. Not "
                         "combinable with --crop-to-scanned. 0 (off) by default.")
-    p.add_argument("--bedmap-mask", default=None,
+    p.add_argument("--bedmap-mask", nargs="?", const=DEFAULT_BEDMAP_MASK, default=None,
                    help="Path to a Bedmap3 grounded-ice mask GeoTIFF (class 1 = "
-                        "grounded; not shipped in this repo -- get it from NERC BAS). "
-                        "Required together with --min-grounded.")
+                        "grounded). Pass with no value to use the bundled default "
+                        f"({DEFAULT_BEDMAP_MASK}); pass a path to use your own; omit "
+                        "the flag entirely to disable grounded filtering. Required "
+                        "together with --min-grounded.")
     p.add_argument("--min-grounded", type=float, default=None,
                    help="Drop candidate positions whose Bedmap3 grounded fraction is "
                         "below this, before any gate/U-Net scoring -- e.g. 0.7 keeps "

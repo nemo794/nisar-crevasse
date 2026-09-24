@@ -45,7 +45,7 @@ from rasterio.enums import Resampling
 from rasterio.windows import Window
 
 from crevasse.biomass.pipeline_predict import BiomassCrevassePipeline
-from crevasse.common.grounded_filter import grounded_vrt, filter_grounded
+from crevasse.common.grounded_filter import grounded_vrt, filter_grounded, DEFAULT_BEDMAP_MASK
 
 POLS = ["HH", "HV", "VH", "VV"]
 T = 512
@@ -169,10 +169,12 @@ def main(argv=None):
     p.add_argument("--check", action="store_true",
                    help="Run the pinned control P4 (see docs/CONTRIBUTING.md) instead of "
                         "an arbitrary summary.")
-    p.add_argument("--bedmap-mask", default=None,
+    p.add_argument("--bedmap-mask", nargs="?", const=DEFAULT_BEDMAP_MASK, default=None,
                    help="Path to a Bedmap3 grounded-ice mask GeoTIFF (class 1 = "
-                        "grounded; not shipped in this repo -- get it from NERC BAS). "
-                        "Required together with --min-grounded.")
+                        "grounded). Pass with no value to use the bundled default "
+                        f"({DEFAULT_BEDMAP_MASK}); pass a path to use your own; omit "
+                        "the flag entirely to disable grounded filtering. Required "
+                        "together with --min-grounded.")
     p.add_argument("--min-grounded", type=float, default=None,
                    help="Drop candidate positions whose Bedmap3 grounded fraction is "
                         "below this, before any gate/U-Net scoring -- e.g. 0.7 keeps "

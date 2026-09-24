@@ -42,7 +42,7 @@ import rasterio
 import crevasse.nisar.train_gate_classifier as T
 from crevasse.nisar.find_data_swath import find_data_bounds, get_valid_tile_positions
 from crevasse.nisar.pipeline_predict import CrevassePipeline
-from crevasse.common.grounded_filter import grounded_vrt, filter_grounded
+from crevasse.common.grounded_filter import grounded_vrt, filter_grounded, DEFAULT_BEDMAP_MASK
 
 
 def tile_granule(granule_path, max_tiles=None, seed=0, bedmap_mask=None, min_grounded=None):
@@ -113,10 +113,12 @@ def main(argv=None):
                    help="Run the pinned control P4 (see docs/CONTRIBUTING.md) instead of "
                         "an arbitrary summary: --max-tiles 300 --seed 0 on 025_019, "
                         "checked against its recorded numbers.")
-    p.add_argument("--bedmap-mask", default=None,
+    p.add_argument("--bedmap-mask", nargs="?", const=DEFAULT_BEDMAP_MASK, default=None,
                    help="Path to a Bedmap3 grounded-ice mask GeoTIFF (class 1 = "
-                        "grounded; not shipped in this repo -- get it from NERC BAS). "
-                        "Required together with --min-grounded.")
+                        "grounded). Pass with no value to use the bundled default "
+                        f"({DEFAULT_BEDMAP_MASK}); pass a path to use your own; omit "
+                        "the flag entirely to disable grounded filtering. Required "
+                        "together with --min-grounded.")
     p.add_argument("--min-grounded", type=float, default=None,
                    help="Drop candidate positions whose Bedmap3 grounded fraction is "
                         "below this, before any gate/U-Net scoring -- e.g. 0.7 keeps "

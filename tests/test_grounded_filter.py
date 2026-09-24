@@ -1,13 +1,22 @@
 """Pure-logic tests for crevasse.common.grounded_filter, using a small synthetic
-Bedmap3-style mask (rasterio MemoryFile) instead of the real, unshipped Bedmap3 raster --
-see the module docstring for why this repo can't ship a real one."""
+Bedmap3-style mask (rasterio MemoryFile) rather than the real, bundled one, so these run
+fast and don't depend on models/bedmap3_mask.tif's actual content."""
+import os
+
 import numpy as np
 import rasterio
 from rasterio.io import MemoryFile
 from rasterio.transform import Affine
 from rasterio.windows import Window
 
-from crevasse.common.grounded_filter import grounded_vrt, grounded_fraction, filter_grounded
+from crevasse.common.grounded_filter import (grounded_vrt, grounded_fraction,
+                                              filter_grounded, DEFAULT_BEDMAP_MASK)
+
+
+def test_default_bedmap_mask_exists():
+    """--bedmap-mask's bundled default (passed with no value) must actually be shipped,
+    not just a path computed on the fly."""
+    assert os.path.exists(DEFAULT_BEDMAP_MASK)
 
 CRS = "EPSG:3031"
 TRANSFORM = Affine(10, 0, 0, 0, -10, 0)  # 10 m/px, origin at (0, 0)

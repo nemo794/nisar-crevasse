@@ -82,12 +82,14 @@ ice and rock are different phenomena, and (per each sensor's `docs/*/METHOD.md` 
 `GATE_LIMITATIONS.md`) ice type is deliberately kept *out* of the gate's own features,
 since it was found to be a confound there rather than a genuine signal. Filtering the
 *candidate list* before the gate ever sees it is a different, purely pre-scoring
-decision: pass **`--bedmap-mask PATH --min-grounded FRAC`** to drop any candidate tile
+decision: pass **`--bedmap-mask [PATH] --min-grounded FRAC`** to drop any candidate tile
 whose Bedmap3 grounded-ice fraction is below `FRAC` (e.g. `0.7`) before any gate/U-Net
 call — often a large fraction of a granule's tiles on a scene with a lot of shelf/ocean
-in it. Bedmap3 isn't shipped in this repo (get it from NERC BAS); both flags are required
-together and off by default. See `crevasse.common.grounded_filter` for why this reads
-each candidate's own real pixel window rather than a separate precomputed context grid.
+in it. `--bedmap-mask` takes an optional value: pass it bare to use the bundled
+`models/bedmap3_mask.tif`, pass a path to use your own copy, or omit the flag entirely
+to skip grounded filtering (the default). Both flags are required together. See
+`crevasse.common.grounded_filter` for why this reads each candidate's own real pixel
+window rather than a separate precomputed context grid.
 
 `pip install -e .` also registers `crevasse-export-geotiff` as a console script —
 the sensor is the first positional argument, everything after it is that sensor's own
@@ -106,8 +108,7 @@ crevasse-export-geotiff nisar \
 
 crevasse-export-geotiff nisar \
     --granule /path/to/NISAR_..._frequencyA_HH_amplitude.tif \
-    --out-dir data/export_nisar --bedmap-mask /path/to/bedmap3_mask.tif \
-    --min-grounded 0.70                                # drop <70% grounded-ice tiles first
+    --out-dir data/export_nisar --bedmap-mask --min-grounded 0.70  # bundled mask, drop <70% grounded
 
 crevasse-export-geotiff nisar \
     --granule /path/to/NISAR_..._frequencyA_HH_amplitude.tif \
@@ -128,8 +129,7 @@ crevasse-export-geotiff biomass \
 
 crevasse-export-geotiff biomass \
     --granule /path/to/BIO_S2_SCS__..._DJT7YH \
-    --out-dir data/export_biomass --bedmap-mask /path/to/bedmap3_mask.tif \
-    --min-grounded 0.70                                # drop <70% grounded-ice tiles first
+    --out-dir data/export_biomass --bedmap-mask --min-grounded 0.70  # bundled mask, drop <70% grounded
 
 crevasse-export-geotiff biomass \
     --granule /path/to/BIO_S2_SCS__..._DJT7YH \
@@ -188,6 +188,8 @@ src/
                   research repo it used to live in, so `bio_build_shard_frangi.py` has no
                   dependency left outside this package
 models/
+  bedmap3_mask.tif    Bedmap3 grounded-ice class mask (~1MB) -- --bedmap-mask's bundled
+                      default; see crevasse.common.grounded_filter
   nisar/        the DEFAULT shipped weights only -- not every past experiment checkpoint
     gate/       gate_5m_freqA_2gran.joblib
     unet/       unet_025_019_f421_meansoft_g3/unet_best.{safetensors,json}
