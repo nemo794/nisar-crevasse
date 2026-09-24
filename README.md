@@ -54,14 +54,16 @@ Both are continuous probabilities, not binary masks (see each sensor's
 `export_geotiff.py` docstring for why).
 
 By default the output is the size of the *whole source raster*, even when `--max-tiles`
-only actually scans a small cluster of it — GDAL fills every block this script never
-touches with `0`, not `NaN` (a documented limitation, not a crash), which can look like a
-real low score rather than "never scanned" when you view the whole extent. Pass
-**`--crop-to-scanned`** to avoid that entirely: the output shrinks to the bounding box of
-the positions this run actually processed (still on the source grid, so it lines up the
-same way, just over a smaller extent), and every grid cell inside that box that was never
-even a candidate also gets an explicit `NaN` write — so every pixel in the file is either
-a real score or an honest `NaN`, nothing silently defaults to `0`.
+only actually scans a small cluster of it. GDAL fills any block a driver never wrote with
+`0`, not the declared `NaN` nodata — which many viewers, including QGIS, render as solid
+black rather than the white they use for real `NaN` nodata (confirmed 2026-09-23 in QGIS
+on a full, uncropped export, as a black ring outside the white nodata ring around the
+scanned footprint). Both outputs are prefilled with `NaN` across their entire extent
+right after creation, before any real write, so every pixel in the file reads back as
+either a real score or an honest `NaN` — never a silent `0`. Pass **`--crop-to-scanned`**
+if you'd rather the file itself only span the bounding box of the positions this run
+actually processed (still on the source grid, so it lines up the same way, just over a
+smaller extent) — mainly useful to shrink file size on a `--max-tiles` test run.
 
 Independent, non-overlapping tile inference has a separate, real artifact: each tile is
 scored with no context beyond its own edge, which shows up as a faint but real grid of
@@ -74,6 +76,18 @@ covered by the *next* tile's center instead, except at the true boundary of the 
 area, where nothing follows it and it's kept). Costs roughly `(512/(512-2*N))^2` times
 more U-Net forward passes — `--edge-margin 64` is about 1.8x. Not combinable with
 `--crop-to-scanned` yet. Off by default.
+
+Crevasse fields of interest form in fast-flowing **grounded** ice — floating shelf, sea
+ice and rock are different phenomena, and (per each sensor's `docs/*/METHOD.md` /
+`GATE_LIMITATIONS.md`) ice type is deliberately kept *out* of the gate's own features,
+since it was found to be a confound there rather than a genuine signal. Filtering the
+*candidate list* before the gate ever sees it is a different, purely pre-scoring
+decision: pass **`--bedmap-mask PATH --min-grounded FRAC`** to drop any candidate tile
+whose Bedmap3 grounded-ice fraction is below `FRAC` (e.g. `0.7`) before any gate/U-Net
+call — often a large fraction of a granule's tiles on a scene with a lot of shelf/ocean
+in it. Bedmap3 isn't shipped in this repo (get it from NERC BAS); both flags are required
+together and off by default. See `crevasse.common.grounded_filter` for why this reads
+each candidate's own real pixel window rather than a separate precomputed context grid.
 
 `pip install -e .` also registers `crevasse-export-geotiff` as a console script —
 the sensor is the first positional argument, everything after it is that sensor's own
@@ -92,6 +106,11 @@ crevasse-export-geotiff nisar \
 
 crevasse-export-geotiff nisar \
     --granule /path/to/NISAR_..._frequencyA_HH_amplitude.tif \
+    --out-dir data/export_nisar --bedmap-mask /path/to/bedmap3_mask.tif \
+    --min-grounded 0.70                                # drop <70% grounded-ice tiles first
+
+crevasse-export-geotiff nisar \
+    --granule /path/to/NISAR_..._frequencyA_HH_amplitude.tif \
     --out-dir data/export_nisar                       # the full swath -- slow, see below
 ```
 
@@ -106,6 +125,11 @@ crevasse-export-geotiff biomass \
 crevasse-export-geotiff biomass \
     --granule /path/to/BIO_S2_SCS__..._DJT7YH \
     --out-dir data/export_biomass --edge-margin 64    # no tile-boundary seam, ~1.8x slower
+
+crevasse-export-geotiff biomass \
+    --granule /path/to/BIO_S2_SCS__..._DJT7YH \
+    --out-dir data/export_biomass --bedmap-mask /path/to/bedmap3_mask.tif \
+    --min-grounded 0.70                                # drop <70% grounded-ice tiles first
 
 crevasse-export-geotiff biomass \
     --granule /path/to/BIO_S2_SCS__..._DJT7YH \
