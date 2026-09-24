@@ -36,7 +36,8 @@ dependencies:
       # original nisar-crevasse-unet/environment.yml (now docs/nisar/UNET_PIPELINE.md's
       # history) about overlaying two torch trees in one site-packages. For a specific
       # CUDA build: pip install torch --index-url https://download.pytorch.org/whl/cu126
-      - torch
+      # PINNED to 2.5.1: PyTorch 2.14.0 causes segmentation faults on macOS ARM64.
+      - torch==2.5.1
       - safetensors
       # >=2.0 REQUIRED -- the 1.x GaussNoise kwarg was `var_limit`; 2.x renamed it to
       # `std_range` and silently ignores unknown kwargs. Both U-Nets' *_check_labels.py
