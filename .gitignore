@@ -4,6 +4,10 @@
 # this directory locally; it's ignored here rather than partially tracked.
 data/
 
+# Large model files exceeding GitHub's 100MB limit
+models/nisar/unet/unet_025_019_f421_meansoft_g3/unet_best.safetensors
+models/biomass/unet/bio_unet_4ch_frangi_aux_nw0p02/unet_best.safetensors
+
 __pycache__/
 *.pyc
 .DS_Store
