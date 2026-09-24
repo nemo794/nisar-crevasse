@@ -190,6 +190,9 @@ scripts/
 `gate_predict.py`/`unet_predict.py`/`bio_predict.py`/`bio_unet_predict.py` loads with no
 arguments (a few hundred MB total) — not the full history of past experiment runs.
 
+**Note:** Two large U-Net weight files (153MB and 199MB) exceed GitHub's 100MB limit and are
+not included in this repository. See [`MODELS.md`](MODELS.md) for how to obtain them.
+
 Everything upstream of that — raw granules, tile labels, training shards, feature caches
 — is **not shipped**: those directories ran from single-digit MB up to tens of GB (one
 sensor's U-Net shards alone were 24 GB), too heavy to distribute in a repo. Every script
