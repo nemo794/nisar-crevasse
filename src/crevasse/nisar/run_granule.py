@@ -27,6 +27,11 @@ What it does, in order:
 `--max-tiles` subsamples the valid-tile list (seeded, so it's reproducible) rather than
 processing a prefix of it -- the swath corner is not a representative sample of tile
 content, so a prefix would bias any summary statistic.
+
+`--min-grounded` (with `--bedmap-mask`) drops candidate positions whose Bedmap3
+grounded-ice fraction is below the given cut, before `read_amp` or the gate ever run on
+them -- see `crevasse.common.grounded_filter` and `export_geotiff.py`'s own docstring.
+Off by default; not usable with `--check` (would change the pinned tile counts).
 """
 import argparse
 from pathlib import Path
@@ -37,9 +42,10 @@ import rasterio
 import crevasse.nisar.train_gate_classifier as T
 from crevasse.nisar.find_data_swath import find_data_bounds, get_valid_tile_positions
 from crevasse.nisar.pipeline_predict import CrevassePipeline
+from crevasse.common.grounded_filter import grounded_vrt, filter_grounded, DEFAULT_BEDMAP_MASK
 
 
-def tile_granule(granule_path, max_tiles=None, seed=0):
+def tile_granule(granule_path, max_tiles=None, seed=0, bedmap_mask=None, min_grounded=None):
     """Granule GeoTIFF -> (positions, amp) covering its valid data swath.
 
     `positions` is `[(row, col), ...]` in native pixels, top-left corner, on the
@@ -48,6 +54,8 @@ def tile_granule(granule_path, max_tiles=None, seed=0):
     absent from both -- this function, unlike the pipeline, is allowed to drop, because
     it is the thing that DEFINES the stack the pipeline's N-in-N-out contract is about.
     """
+    if bool(bedmap_mask) != (min_grounded is not None):
+        raise ValueError("--bedmap-mask and --min-grounded must be given together")
     with rasterio.open(granule_path) as src:
         scale = T.tile_scale(src)
         bounds, _ = find_data_bounds(str(granule_path), downsample=100)
@@ -55,6 +63,18 @@ def tile_granule(granule_path, max_tiles=None, seed=0):
             raise SystemExit(f"{granule_path}: no data found in raster")
         step = T.E.TS * scale
         all_positions = get_valid_tile_positions(bounds, tile_size=step)
+
+        if bedmap_mask:
+            with grounded_vrt(bedmap_mask, src.crs, src.transform,
+                               src.width, src.height) as gvrt:
+                before = len(all_positions)
+                all_positions = filter_grounded(
+                    gvrt, all_positions,
+                    lambda row, col: (min(step, src.width - col),
+                                       min(step, src.height - row)),
+                    src.width, src.height, min_grounded)
+            print(f"--min-grounded {min_grounded}: kept {len(all_positions)} of "
+                  f"{before} candidate positions")
 
         if max_tiles is not None and len(all_positions) > max_tiles:
             rng = np.random.default_rng(seed)
@@ -93,14 +113,31 @@ def main(argv=None):
                    help="Run the pinned control P4 (see docs/CONTRIBUTING.md) instead of "
                         "an arbitrary summary: --max-tiles 300 --seed 0 on 025_019, "
                         "checked against its recorded numbers.")
+    p.add_argument("--bedmap-mask", nargs="?", const=DEFAULT_BEDMAP_MASK, default=None,
+                   help="Path to a Bedmap3 grounded-ice mask GeoTIFF (class 1 = "
+                        "grounded). Pass with no value to use the bundled default "
+                        f"({DEFAULT_BEDMAP_MASK}); pass a path to use your own; omit "
+                        "the flag entirely to disable grounded filtering. Required "
+                        "together with --min-grounded.")
+    p.add_argument("--min-grounded", type=float, default=None,
+                   help="Drop candidate positions whose Bedmap3 grounded fraction is "
+                        "below this, before any gate/U-Net scoring -- e.g. 0.7 keeps "
+                        "only tiles that are at least 70%% grounded ice. Off by default. "
+                        "Requires --bedmap-mask. Not used by --check (would change the "
+                        "pinned control numbers).")
     args = p.parse_args(argv)
 
     max_tiles, seed = args.max_tiles, args.seed
     if args.check:
+        if args.bedmap_mask or args.min_grounded is not None:
+            raise SystemExit("--check pins exact tile counts; --bedmap-mask/"
+                              "--min-grounded would change them. Run without --check.")
         max_tiles, seed = 300, 0
         print("Running control P4: --max-tiles 300 --seed 0")
 
-    positions, amp = tile_granule(args.granule, max_tiles=max_tiles, seed=seed)
+    positions, amp = tile_granule(args.granule, max_tiles=max_tiles, seed=seed,
+                                   bedmap_mask=args.bedmap_mask,
+                                   min_grounded=args.min_grounded)
     print(f"Granule: {Path(args.granule).name}")
     print(f"Tiled  : {len(positions)} valid tiles (of the {'full swath' if max_tiles is None else f'{max_tiles}-tile sample'})")
 

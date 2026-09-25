@@ -62,6 +62,15 @@ discarded and covered by the *next* tile's center instead, except at the true bo
 of the scanned swath, where it's kept since nothing follows it). Costs roughly
 `(step / (step - 2*N))^2` times more U-Net forward passes -- not free, but the seam is
 gone. Not currently combinable with `--crop-to-scanned`. Off by default.
+
+`--min-grounded` (with `--bedmap-mask`) drops candidate positions before any gate/U-Net
+scoring whose Bedmap3 grounded-ice fraction is below the given cut -- e.g. `0.7` keeps
+only tiles that are at least 70% grounded ice, discarding floating-shelf/sea-ice/rock/
+ocean tiles up front rather than letting the gate see and score them. See
+`crevasse.common.grounded_filter` for why this reads each tile's own real pixel window
+rather than a separate precomputed context grid. Off by default: pass `--bedmap-mask`
+with no value to use the bundled `models/bedmap3_mask.tif`, a path to use your own, or
+omit it entirely to skip grounded filtering. Both flags are required together.
 """
 import argparse
 from pathlib import Path
@@ -75,6 +84,7 @@ from crevasse.nisar.find_data_swath import find_data_bounds, get_valid_tile_posi
 from crevasse.nisar.pipeline_predict import CrevassePipeline
 from crevasse.common.geotiff_crop import (crop_window, crop_transform, prefill_nan,
                                            overlap_positions, center_crop)
+from crevasse.common.grounded_filter import grounded_vrt, filter_grounded, DEFAULT_BEDMAP_MASK
 
 
 def _new_output(path, profile, step):
@@ -89,13 +99,16 @@ def _new_output(path, profile, step):
 
 
 def export_geotiffs(granule_path, out_dir, max_tiles=None, batch_size=16,
-                     gate_thresh=None, crop_to_scanned=False, edge_margin=0):
+                     gate_thresh=None, crop_to_scanned=False, edge_margin=0,
+                     bedmap_mask=None, min_grounded=None):
     """Stream a full (or capped) granule run to `gate_prob.tif` and `unet_prob.tif`
     under `out_dir`, both lined up with `granule_path`'s own grid. Returns the two
     output paths. See the module docstring for the write semantics, and for what
     `crop_to_scanned`/`edge_margin` change."""
     if crop_to_scanned and edge_margin:
         raise ValueError("--crop-to-scanned and --edge-margin are not supported together yet")
+    if bool(bedmap_mask) != (min_grounded is not None):
+        raise ValueError("--bedmap-mask and --min-grounded must be given together")
     out_dir = Path(out_dir)
 
     with rasterio.open(granule_path) as src:
@@ -107,6 +120,18 @@ def export_geotiffs(granule_path, out_dir, max_tiles=None, batch_size=16,
         if bounds is None:
             raise SystemExit(f"{granule_path}: no data found in raster")
         positions = get_valid_tile_positions(bounds, tile_size=step)
+
+        if bedmap_mask:
+            with grounded_vrt(bedmap_mask, src.crs, src.transform,
+                               src.width, src.height) as gvrt:
+                before = len(positions)
+                positions = filter_grounded(
+                    gvrt, positions,
+                    lambda row, col: (min(step, src.width - col),
+                                       min(step, src.height - row)),
+                    src.width, src.height, min_grounded)
+            print(f"--min-grounded {min_grounded}: kept {len(positions)} of {before} "
+                  f"candidate positions")
 
         stride = step
         area_row0 = area_col0 = 0
@@ -242,10 +267,22 @@ def main(argv=None):
                         "inference leaves along every tile boundary. Costs roughly "
                         "(step/(step-2*N))^2 times more U-Net forward passes. Not "
                         "combinable with --crop-to-scanned. 0 (off) by default.")
+    p.add_argument("--bedmap-mask", nargs="?", const=DEFAULT_BEDMAP_MASK, default=None,
+                   help="Path to a Bedmap3 grounded-ice mask GeoTIFF (class 1 = "
+                        "grounded). Pass with no value to use the bundled default "
+                        f"({DEFAULT_BEDMAP_MASK}); pass a path to use your own; omit "
+                        "the flag entirely to disable grounded filtering. Required "
+                        "together with --min-grounded.")
+    p.add_argument("--min-grounded", type=float, default=None,
+                   help="Drop candidate positions whose Bedmap3 grounded fraction is "
+                        "below this, before any gate/U-Net scoring -- e.g. 0.7 keeps "
+                        "only tiles that are at least 70%% grounded ice. Off by default. "
+                        "Requires --bedmap-mask.")
     args = p.parse_args(argv)
     export_geotiffs(args.granule, args.out_dir, max_tiles=args.max_tiles,
                      batch_size=args.batch_size, gate_thresh=args.gate_thresh,
-                     crop_to_scanned=args.crop_to_scanned, edge_margin=args.edge_margin)
+                     crop_to_scanned=args.crop_to_scanned, edge_margin=args.edge_margin,
+                     bedmap_mask=args.bedmap_mask, min_grounded=args.min_grounded)
 
 
 if __name__ == "__main__":
