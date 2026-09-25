@@ -135,7 +135,7 @@ def export_geotiffs(granule_path, out_dir, max_tiles=None, batch_size=16,
 
         stride = step
         area_row0 = area_col0 = 0
-        if edge_margin:
+        if edge_margin and positions:
             stride = step - 2 * edge_margin
             if stride <= 0:
                 raise ValueError(f"--edge-margin {edge_margin} too large for tile size {step}")
@@ -152,9 +152,12 @@ def export_geotiffs(granule_path, out_dir, max_tiles=None, batch_size=16,
         print(f"{len(positions)} candidate tile positions "
               f"({'capped, prefix of the scan order' if max_tiles else 'full swath'}), "
               f"step={step} native px")
+        if not positions:
+            print("No candidates -- writing all-NaN full-extent GeoTIFFs "
+                  "(--edge-margin/--crop-to-scanned have nothing to rescore or crop to).")
 
         row_off = col_off = 0
-        if crop_to_scanned:
+        if crop_to_scanned and positions:
             win = crop_window(positions, step, src.width, src.height)
             row_off, col_off = win.row_off, win.col_off
             profile = profile.copy()
