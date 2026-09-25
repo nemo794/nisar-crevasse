@@ -10,15 +10,18 @@ Both outputs share the HH polarization file's CRS, transform, width and height E
 with the granule itself in QGIS / rasterio / any GIS tool -- no separate transform
 bookkeeping needed on the reading side.
 
-Written via GDAL's COG driver: 512px internal blocksize, DEFLATE/predictor=3 (matches a
-collaborator's specified GDAL creation options -- BLOCKSIZE=512, COMPRESS=DEFLATE,
-LEVEL=1, PREDICTOR=3, OVERVIEW_RESAMPLING=AVERAGE, NUM_THREADS=ALL_CPUS, BIGTIFF=YES),
-with overviews and embedded per-band statistics (`-stats`'s effect, via
-`dst.stats(approx=False)` right before close -- not automatic, has to be called
-explicitly). GDAL's COG driver supports the same incremental windowed `write()` calls
-this script always used; verified 2026-09-22 (against `nisar-crevasse-pipeline`'s
-identical change) that this is a pure container-format change, not a two-step "plain
-GeoTIFF then translate" pipeline.
+Written as a COG: 512px internal blocksize, DEFLATE/predictor=3 (matches a collaborator's
+specified GDAL creation options -- BLOCKSIZE=512, COMPRESS=DEFLATE, LEVEL=1, PREDICTOR=3,
+OVERVIEW_RESAMPLING=AVERAGE, NUM_THREADS=ALL_CPUS, BIGTIFF=YES), with overviews and
+embedded per-band statistics (`gdal_translate -stats`). The COG is produced in two steps:
+this script streams its windowed `write()` calls to a temporary *tiled plain GeoTIFF*,
+then converts that to the COG in one `gdal_translate` pass at the end (see
+`crevasse.common.cog_io`). Opening the output with the COG driver directly and writing
+windows into it does NOT stream -- the COG driver buffers every written block in memory
+until close, which OOM-kills a full-granule run (observed 2026-09-25: SIGKILL/exit 137
+mid-scan on a 16 GB worker). An earlier revision of this file claimed the COG driver
+"supports the same incremental windowed write() calls"; the calls succeed but are
+buffered, not flushed, so that was wrong -- hence the temp-GeoTIFF-then-translate path.
 
     gate_prob.tif   each tile's SCALAR gate probability, broadcast flat over its whole
                     512x512 footprint (the gate has no notion of "where inside the
@@ -85,17 +88,7 @@ from crevasse.biomass.run_granule import _granule_paths, _coarse_valid_frac, POL
 from crevasse.common.geotiff_crop import (crop_window, crop_transform, prefill_nan,
                                            overlap_positions, center_crop)
 from crevasse.common.grounded_filter import grounded_vrt, filter_grounded, DEFAULT_BEDMAP_MASK
-
-
-def _new_output(path, profile, step):
-    prof = profile.copy()
-    for k in ("tiled", "blockxsize", "blockysize"):
-        prof.pop(k, None)
-    prof.update(driver="COG", count=1, dtype="float32", nodata=np.nan,
-                compress="DEFLATE", level=1, predictor=3, blocksize=min(step, 512),
-                overview_resampling="average", num_threads="ALL_CPUS", bigtiff="YES")
-    Path(path).parent.mkdir(parents=True, exist_ok=True)
-    return rasterio.open(path, "w", **prof)
+from crevasse.common.cog_io import open_temp_tiff, finalize_cog
 
 
 def export_geotiffs(granule_dir, out_dir, max_tiles=None, batch_size=16,
@@ -183,9 +176,13 @@ def export_geotiffs(granule_dir, out_dir, max_tiles=None, batch_size=16,
 
     srcs = {p: rasterio.open(paths[p]) for p in POLS}
     n_scored = n_flagged = n_dropped = 0
+    # Stream windowed writes to temporary tiled GeoTIFFs, then convert each to a COG in one
+    # gdal_translate pass at the end -- see crevasse.common.cog_io for why writing the COG
+    # directly (as this used to) OOMs on a full granule.
+    dst_gate, gate_temp = open_temp_tiff(gate_path, profile, T)
+    dst_unet, unet_temp = open_temp_tiff(unet_path, profile, T)
     try:
-        with _new_output(gate_path, profile, T) as dst_gate, \
-             _new_output(unet_path, profile, T) as dst_unet:
+        with dst_gate, dst_unet:
 
             prefill_nan(dst_gate)
             prefill_nan(dst_unet)
@@ -245,12 +242,17 @@ def export_geotiffs(granule_dir, out_dir, max_tiles=None, batch_size=16,
                 print(f"  {done}/{len(positions)} candidates  "
                       f"({n_scored} scored, {n_flagged} flagged, {n_dropped} dropped)",
                       end="\r")
-
-            dst_gate.stats(approx=False)
-            dst_unet.stats(approx=False)
     finally:
         for s in srcs.values():
             s.close()
+
+    # Datasets are closed (temp tiled GeoTIFFs fully written); convert each to a COG,
+    # embedding per-band stats via gdal_translate -stats (replaces the old in-place
+    # dst.stats(approx=False) call).
+    print()
+    print("Converting to Cloud-Optimized GeoTIFFs...")
+    finalize_cog(gate_temp, gate_path)
+    finalize_cog(unet_temp, unet_path)
 
     print()
     print(f"Done: {n_scored} scored, {n_flagged} flagged, {n_dropped} dropped "
